@@ -1,0 +1,14 @@
+.fn-14 {
+    -fx-font-style: 14px;
+    -fx-font-family: "Times New Roman";
+}
+
+.fn-16 {
+    -fx-font-style: 16px;
+    -fx-font-family: "Times New Roman";
+}
+
+.bg-trans {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+}
