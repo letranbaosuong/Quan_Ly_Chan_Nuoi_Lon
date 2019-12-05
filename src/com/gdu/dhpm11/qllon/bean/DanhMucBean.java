@@ -1,21 +1,21 @@
 package com.gdu.dhpm11.qllon.bean;
 
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 public class DanhMucBean {
 
     private String kind;
-    private AnchorPane an;
-    private Label lb;
+    private Pane pn;
+    private Text txt;
 
     public DanhMucBean() {
     }
 
-    public DanhMucBean(String kind, AnchorPane an, Label lb) {
+    public DanhMucBean(String kind, Pane pn, Text txt) {
         this.kind = kind;
-        this.an = an;
-        this.lb = lb;
+        this.pn = pn;
+        this.txt = txt;
     }
 
     public String getKind() {
@@ -26,19 +26,19 @@ public class DanhMucBean {
         this.kind = kind;
     }
 
-    public AnchorPane getPn() {
-        return an;
+    public Pane getPn() {
+        return pn;
     }
 
-    public void setPn(AnchorPane pn) {
-        this.an = pn;
+    public void setPn(Pane pn) {
+        this.pn = pn;
     }
 
-    public Label getLb() {
-        return lb;
+    public Text getTxt() {
+        return txt;
     }
 
-    public void setLb(Label lb) {
-        this.lb = lb;
+    public void setTxt(Text txt) {
+        this.txt = txt;
     }
 }

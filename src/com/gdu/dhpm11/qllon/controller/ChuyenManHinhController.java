@@ -30,43 +30,28 @@ public class ChuyenManHinhController implements Initializable {
     private BorderPane ManHinh_Main_BorderPane;
 
     @FXML
-    private AnchorPane anchorPaneMenu;
-
-    @FXML
-    private JFXButton jfxBtnQuanLyLon;
-
-    @FXML
-    private JFXButton jfxBtnQuanLyVacXin;
-
-    @FXML
-    private JFXButton jfxBtnQuanLyThucAn;
-
-    @FXML
-    private JFXButton jfxBtnThongKeBaoCao;
-
-    @FXML
     private ImageView imgMinimize;
 
     @FXML
     private ImageView imgMaximize;
 
     @FXML
-    void onMouseClicked_UI_Quan_Ly_Lon(MouseEvent event) {
+    void onMousePressed_UI_Quan_Ly_Lon(MouseEvent event) {
         loadUI("QuanLyLon_AnchorPane");
     }
 
     @FXML
-    void onMouseClicked_UI_Quan_Ly_Thuc_An(MouseEvent event) {
+    void onMousePressed_UI_Quan_Ly_Thuc_An(MouseEvent event) {
         loadUI("QuanLyThucAn_AnchorPane");
     }
 
     @FXML
-    void onMouseClicked_UI_Quan_Ly_Vac_Xin(MouseEvent event) {
+    void onMousePressed_UI_Quan_Ly_Vac_Xin(MouseEvent event) {
         loadUI("QuanLyVacXin_AnchorPane");
     }
 
     @FXML
-    void onMouseClicked_UI_Thong_Ke_Bao_Cao(MouseEvent event) {
+    void onMousePressed_UI_Thong_Ke_Bao_Cao(MouseEvent event) {
         loadUI("ThongKeBaoCao_AnchorPane");
     }
 
@@ -89,20 +74,9 @@ public class ChuyenManHinhController implements Initializable {
 
     }
 
-    @FXML
-    void initialize() {
-        assert ManHinh_Main_BorderPane != null : "fx:id=\"ManHinh_Main_BorderPane\" was not injected: check your FXML file 'ManHinh_Main.fxml'.";
-        assert anchorPaneMenu != null : "fx:id=\"pnMenu\" was not injected: check your FXML file 'ManHinh_Main.fxml'.";
-        assert jfxBtnQuanLyLon != null : "fx:id=\"jfxBtnQuanLyLon\" was not injected: check your FXML file 'ManHinh_Main.fxml'.";
-        assert jfxBtnQuanLyVacXin != null : "fx:id=\"jfxBtnQuanLyVacXin\" was not injected: check your FXML file 'ManHinh_Main.fxml'.";
-        assert jfxBtnQuanLyThucAn != null : "fx:id=\"jfxBtnQuanLyThucAn\" was not injected: check your FXML file 'ManHinh_Main.fxml'.";
-        assert jfxBtnThongKeBaoCao != null : "fx:id=\"jfxBtnThongKeBaoCao\" was not injected: check your FXML file 'ManHinh_Main.fxml'.";
-
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        loadUI("QuanLyLon_AnchorPane");
     }
 
 }

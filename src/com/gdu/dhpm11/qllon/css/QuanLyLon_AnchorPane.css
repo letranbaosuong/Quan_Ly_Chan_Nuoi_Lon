@@ -79,9 +79,22 @@
 
 
 .tab-pane > .tab-header-area > .tab-header-background {
-    -fx-background-color:white;
+    -fx-background-color: white;
     -fx-border-color: #a3a7a8;
     -fx-border-width: 0 0 1 0;
     -fx-background-insets: 0;
     -fx-pref-height: 45px;
+}
+
+#txtTimKiem {
+    /*-fx-background-image: url('http://icons.iconarchive.com/icons/rockettheme/halloween/32/pumpkin-icon.png');*/
+    /*-fx-background-repeat: no-repeat;*/
+    /*-fx-background-position: left center;*/
+    -fx-background-color: -fx-text-box-border, -fx-background ;
+    -fx-background-insets: 0, 0 0 2 0 ;
+    -fx-background-radius: 0 ;
+}
+
+#txtTimKiem:focused {
+    -fx-background-color: -fx-focus-color, -fx-background ;
 }

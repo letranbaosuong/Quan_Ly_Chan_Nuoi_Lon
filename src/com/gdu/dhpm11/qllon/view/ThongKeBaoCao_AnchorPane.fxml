@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gdu.dhpm11.qllon.controller.ThongKeBaoCaoController">
+<AnchorPane prefHeight="650.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gdu.dhpm11.qllon.controller.ThongKeBaoCaoController">
    <children>
-      <Label layoutX="105.0" layoutY="165.0" text="Thong Ke Bao Cao">
-         <font>
-            <Font size="48.0" />
-         </font>
-      </Label>
+      <AreaChart layoutX="14.0" layoutY="9.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </AreaChart>
+      <PieChart layoutX="571.0" layoutY="97.0" prefHeight="224.0" prefWidth="255.0" />
    </children>
 </AnchorPane>

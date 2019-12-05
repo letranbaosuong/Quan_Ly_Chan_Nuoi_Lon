@@ -1,107 +1,49 @@
 package com.gdu.dhpm11.qllon.model;
 
-import javafx.beans.property.SimpleStringProperty;
-
 public class VacXin {
-    private SimpleStringProperty Ta;
-    private SimpleStringProperty ECOLI;
-    private SimpleStringProperty Tay_Giun;
-    private SimpleStringProperty PARVO;
-    private SimpleStringProperty FE_COC;
-    private SimpleStringProperty Suyen;
-    private SimpleStringProperty PRRS;
+    private int MS_Vac_Xin;
+    private String Ten_Vac_Xin;
+    private int MS_Loai_Vac_Xin;
 
-    public VacXin(String ta, String ECOLI, String tay_Giun, String PARVO, String FE_COC, String suyen, String PRRS) {
-        this.Ta = new SimpleStringProperty(ta);
-        this.ECOLI =new SimpleStringProperty(ECOLI) ;
-        this.Tay_Giun = new SimpleStringProperty(tay_Giun);
-        this.PARVO = new SimpleStringProperty(PARVO);
-        this.FE_COC = new SimpleStringProperty(FE_COC);
-        this.Suyen = new SimpleStringProperty(suyen);
-        this.PRRS = new SimpleStringProperty(PRRS);
+    public VacXin() {
     }
 
-    public String getTa() {
-        return Ta.get();
+    public VacXin(int MS_Vac_Xin, String ten_Vac_Xin, int MS_Loai_Vac_Xin) {
+        this.MS_Vac_Xin = MS_Vac_Xin;
+        Ten_Vac_Xin = ten_Vac_Xin;
+        this.MS_Loai_Vac_Xin = MS_Loai_Vac_Xin;
     }
 
-    public SimpleStringProperty taProperty() {
-        return Ta;
+    public int getMS_Vac_Xin() {
+        return MS_Vac_Xin;
     }
 
-    public void setTa(String ta) {
-        this.Ta.set(ta);
+    public void setMS_Vac_Xin(int MS_Vac_Xin) {
+        this.MS_Vac_Xin = MS_Vac_Xin;
     }
 
-    public String getECOLI() {
-        return ECOLI.get();
+    public String getTen_Vac_Xin() {
+        return Ten_Vac_Xin;
     }
 
-    public SimpleStringProperty ECOLIProperty() {
-        return ECOLI;
+    public void setTen_Vac_Xin(String ten_Vac_Xin) {
+        Ten_Vac_Xin = ten_Vac_Xin;
     }
 
-    public void setECOLI(String ECOLI) {
-        this.ECOLI.set(ECOLI);
+    public int getMS_Loai_Vac_Xin() {
+        return MS_Loai_Vac_Xin;
     }
 
-    public String getTay_Giun() {
-        return Tay_Giun.get();
+    public void setMS_Loai_Vac_Xin(int MS_Loai_Vac_Xin) {
+        this.MS_Loai_Vac_Xin = MS_Loai_Vac_Xin;
     }
 
-    public SimpleStringProperty tay_GiunProperty() {
-        return Tay_Giun;
-    }
-
-    public void setTay_Giun(String tay_Giun) {
-        this.Tay_Giun.set(tay_Giun);
-    }
-
-    public String getPARVO() {
-        return PARVO.get();
-    }
-
-    public SimpleStringProperty PARVOProperty() {
-        return PARVO;
-    }
-
-    public void setPARVO(String PARVO) {
-        this.PARVO.set(PARVO);
-    }
-
-    public String getFE_COC() {
-        return FE_COC.get();
-    }
-
-    public SimpleStringProperty FE_COCProperty() {
-        return FE_COC;
-    }
-
-    public void setFE_COC(String FE_COC) {
-        this.FE_COC.set(FE_COC);
-    }
-
-    public String getSuyen() {
-        return Suyen.get();
-    }
-
-    public SimpleStringProperty suyenProperty() {
-        return Suyen;
-    }
-
-    public void setSuyen(String suyen) {
-        this.Suyen.set(suyen);
-    }
-
-    public String getPRRS() {
-        return PRRS.get();
-    }
-
-    public SimpleStringProperty PRRSProperty() {
-        return PRRS;
-    }
-
-    public void setPRRS(String PRRS) {
-        this.PRRS.set(PRRS);
+    @Override
+    public String toString() {
+        return "VacXin{" +
+                "MS_Vac_Xin=" + MS_Vac_Xin +
+                ", Ten_Vac_Xin='" + Ten_Vac_Xin + '\'' +
+                ", MS_Loai_Vac_Xin=" + MS_Loai_Vac_Xin +
+                '}';
     }
 }

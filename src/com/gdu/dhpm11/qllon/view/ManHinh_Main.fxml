@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -8,8 +7,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane fx:id="ManHinh_Main_BorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gdu.dhpm11.qllon.controller.ChuyenManHinhController">
     <left>
@@ -29,58 +30,70 @@
                         </ImageView>
                     </children>
                 </AnchorPane>
-                <AnchorPane fx:id="anchorPaneMenu" layoutY="150.0" prefHeight="509.0" prefWidth="350.0" style="-fx-background-color: #041f4a;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="155.0">
+                <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="155.0">
                     <children>
-                        <JFXButton fx:id="jfxBtnQuanLyLon" alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="40.0" layoutX="6.0" layoutY="24.0" onMouseClicked="#onMouseClicked_UI_Quan_Ly_Lon" prefHeight="80.0" prefWidth="339.0" ripplerFill="RED" style="-fx-background-color: #09599e;" stylesheets="@../css/ManHinh_Main.css" text="Quản lý lợn" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="20.0">
-                            <font>
-                                <Font name="Cambria" size="20.0" />
-                            </font>
-                            <graphic>
-                                <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/icons8_pig_60px_1.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </JFXButton>
-                        <JFXButton fx:id="jfxBtnQuanLyVacXin" alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="40.0" layoutX="6.0" layoutY="213.0" onMouseClicked="#onMouseClicked_UI_Quan_Ly_Vac_Xin" prefHeight="80.0" prefWidth="339.0" ripplerFill="RED" style="-fx-background-color: #09599e;" stylesheets="@../css/ManHinh_Main.css" text="Quản lý Vác-xin" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="120.0">
-                            <font>
-                                <Font name="Cambria" size="20.0" />
-                            </font>
-                            <graphic>
-                                <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/icons8_pig_60px_1.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </JFXButton>
-                        <JFXButton fx:id="jfxBtnQuanLyThucAn" alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="40.0" layoutY="309.0" onMouseClicked="#onMouseClicked_UI_Quan_Ly_Thuc_An" prefHeight="80.0" prefWidth="350.0" ripplerFill="RED" style="-fx-background-color: #09599e;" stylesheets="@../css/ManHinh_Main.css" text="Quản lý thức ăn" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="220.0">
-                            <font>
-                                <Font name="Cambria" size="20.0" />
-                            </font>
-                            <graphic>
-                                <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/icons8_pig_60px_1.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </JFXButton>
-                        <JFXButton fx:id="jfxBtnThongKeBaoCao" alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="40.0" layoutY="389.0" onMouseClicked="#onMouseClicked_UI_Thong_Ke_Bao_Cao" prefHeight="80.0" prefWidth="350.0" ripplerFill="RED" style="-fx-background-color: #09599e;" stylesheets="@../css/ManHinh_Main.css" text="Thống kê báo cáo" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="320.0">
-                            <font>
-                                <Font name="Cambria" size="20.0" />
-                            </font>
-                            <graphic>
-                                <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/icons8_pig_60px_1.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </JFXButton>
+                        <AnchorPane fx:id="anchorPaneMenu" prefHeight="509.0" prefWidth="350.0" style="-fx-background-color: #041f4a;">
+                            <children>
+                                <Pane fx:id="pane" layoutX="37.0" layoutY="14.0" onMousePressed="#onMousePressed_UI_Quan_Ly_Lon" prefHeight="80.0" prefWidth="339.0" stylesheets="@../css/ManHinh_Main.css" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="20.0">
+                                    <children>
+                                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="20.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../images/icons8_pig_60px_1.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Text fill="WHITE" layoutX="105.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quản lý lợn">
+                                            <font>
+                                                <Font name="Cambria" size="20.0" />
+                                            </font>
+                                        </Text>
+                                    </children>
+                                </Pane>
+                        <Pane fx:id="pane" layoutX="6.0" layoutY="126.0" onMousePressed="#onMousePressed_UI_Quan_Ly_Thuc_An" prefHeight="80.0" prefWidth="339.0" stylesheets="@../css/ManHinh_Main.css" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="120.0">
+                           <children>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="20.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/icons8_pig_60px_1.png" />
+                                 </image>
+                              </ImageView>
+                              <Text fill="WHITE" layoutX="105.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quản lý thức ăn">
+                                 <font>
+                                    <Font name="Cambria" size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="pane" layoutX="16.0" layoutY="136.0" onMousePressed="#onMousePressed_UI_Quan_Ly_Vac_Xin" prefHeight="80.0" prefWidth="339.0" stylesheets="@../css/ManHinh_Main.css" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="220.0">
+                           <children>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="20.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/icons8_pig_60px_1.png" />
+                                 </image>
+                              </ImageView>
+                              <Text fill="WHITE" layoutX="105.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quản lý Vác - xin">
+                                 <font>
+                                    <Font name="Cambria" size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="pane" onMousePressed="#onMousePressed_UI_Thong_Ke_Bao_Cao" prefHeight="80.0" prefWidth="339.0" stylesheets="@../css/ManHinh_Main.css" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="320.0">
+                           <children>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="20.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/icons8_pig_60px_1.png" />
+                                 </image>
+                              </ImageView>
+                              <Text fill="WHITE" layoutX="105.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thống kê báo cáo">
+                                 <font>
+                                    <Font name="Cambria" size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                            </children>
+                        </AnchorPane>
                     </children>
-                </AnchorPane>
+                </VBox>
                 <AnchorPane style="-fx-background-color: #041f4a;">
                     <children>
                         <Label alignment="CENTER" text="www.giadinh.edu.vn" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -91,9 +104,9 @@
                     </children>
                 </AnchorPane>
             </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
         </VBox>
     </left>
     <top>
@@ -119,14 +132,16 @@
     </top>
     <bottom>
         <AnchorPane prefHeight="15.0" prefWidth="1000.0" style="-fx-background-color: pink;" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin></AnchorPane>
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+        </AnchorPane>
     </bottom>
     <center>
         <AnchorPane style="-fx-background-color: yellow;" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets left="5.0" />
-         </BorderPane.margin></AnchorPane>
+            <BorderPane.margin>
+                <Insets left="5.0" />
+            </BorderPane.margin>
+        </AnchorPane>
     </center>
 </BorderPane>
