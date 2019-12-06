@@ -1,5 +1,6 @@
 package com.gdu.dhpm11.qllon.main;
 
+import com.gdu.dhpm11.qllon.controller.QuanLyLonController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

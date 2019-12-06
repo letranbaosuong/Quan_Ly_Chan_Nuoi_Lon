@@ -12,11 +12,15 @@ public class Lon extends LoaiLon {
         Tuoi_Lon = "0 tháng 1 ngày";
     }
 
-    public Lon(int MS_Loai_Lon) {
-        super(MS_Loai_Lon);
-        this.MS_Tai_Lon = 1;
-        Gioi_Tinh_Lon = "Cái";
-        Tuoi_Lon = "0 tháng 1 ngày";
+//    public Lon(int MS_Loai_Lon) {
+//        super(MS_Loai_Lon);
+//        this.MS_Tai_Lon = 1;
+//        Gioi_Tinh_Lon = "Cái";
+//        Tuoi_Lon = "0 tháng 1 ngày";
+//    }
+
+    public Lon(int MS_Tai_Lon) {
+        this.MS_Tai_Lon = MS_Tai_Lon;
     }
 
     public Lon(int MS_Tai_Lon, String gioi_Tinh_Lon, String tuoi_Lon) {
