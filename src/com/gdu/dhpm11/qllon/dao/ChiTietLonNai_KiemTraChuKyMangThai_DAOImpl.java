@@ -32,7 +32,7 @@ public class ChiTietLonNai_KiemTraChuKyMangThai_DAOImpl implements ChiTietLonNai
             cons.close();
             return ChiTietLonNai_KiemTraChuKyMangThai_List;
         } catch (SQLException e) {
-            System.out.println("Loi public List<ChiTietLonNai> getListLonNaiDAO() {} trong package com.gdu.dhpm11.qllon.dao; : " + e.toString());
+            System.out.println("Loi public List<ChiTietLonNai_KiemTraChuKyMangThai> LayDanhSach_ChiTietLonNai_KiemTraChuKyMangThai() {} trong package com.gdu.dhpm11.qllon.dao; : " + e.toString());
         }
         return null;
     }

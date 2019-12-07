@@ -87,4 +87,21 @@ public class Ham {
 
         return convertToDateViaSqlDate(ngayTam);
     }
+
+    public String DateToString(Date date) {
+        return dateFormat.format(date);
+    }
+
+    public Date StringToDate(String date) {
+        try {
+            return dateFormat.parse(date);
+        } catch (ParseException e) {
+            System.out.println("Loi Class Ham public Date StringToDate(String date){}");
+        }
+        return null;
+    }
+
+    public LocalDate StringToLocalDate(String date) {
+        return LocalDate.parse(date, dateTimeFormatter);
+    }
 }

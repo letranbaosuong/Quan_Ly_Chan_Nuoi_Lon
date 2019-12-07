@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -12,13 +13,18 @@ import java.util.ResourceBundle;
 import com.gdu.dhpm11.qllon.dao.DBConnect;
 import com.gdu.dhpm11.qllon.model.ChiTietLonNai;
 import com.gdu.dhpm11.qllon.model.ChiTietLonNai_KiemTraChuKyMangThai;
+import com.gdu.dhpm11.qllon.model.ChiTietLonNai_VacXin;
 import com.gdu.dhpm11.qllon.service.ChiTietLonNai_KiemTraChuKyMangThai_Service;
 import com.gdu.dhpm11.qllon.service.ChiTietLonNai_KiemTraChuKyMangThai_ServiceImpl;
+import com.gdu.dhpm11.qllon.service.ChiTietLonNai_VacXin_Service;
+import com.gdu.dhpm11.qllon.service.ChiTietLonNai_VacXin_ServiceImpl;
 import com.gdu.dhpm11.qllon.utility.ClassTableModel;
 import com.gdu.dhpm11.qllon.utility.Class_TableView_ChiTietLonNai_KiemTraChuKyMangThai;
 import com.gdu.dhpm11.qllon.utility.Class_TableView_ChiTietLonNai_VacXin;
+import com.gdu.dhpm11.qllon.utility.Ham;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -27,6 +33,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 public class QuanLyLonController implements Initializable {
 
@@ -111,17 +118,7 @@ public class QuanLyLonController implements Initializable {
 
     private static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat(DATE_PATTERN);
 
-    private ChiTietLonNai_KiemTraChuKyMangThai_Service chiTietLonNai_kiemTraChuKyMangThai_service = null;
-    ObservableList<Class_TableView_ChiTietLonNai_KiemTraChuKyMangThai> dataTableView_KiemTrachukymangThai = FXCollections.observableArrayList();
-
-    public void HienThiTableViewKiemTraChuKyMangThai() {
-        ObservableList<Class_TableView_ChiTietLonNai_KiemTraChuKyMangThai> dataTableView_KiemTrachukymangThai = FXCollections.observableArrayList();
-
-        List<ChiTietLonNai_KiemTraChuKyMangThai> danhSach_ChiTietLonNai_KiemTraChuKyMangThai = chiTietLonNai_kiemTraChuKyMangThai_service.LayDanhSach_ChiTietLonNai_KiemTraChuKyMangThai();
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void HienThiTableView_KiemTraChuKyMangThai() {
         tblC_MaTai_ChuKyMangThai.setCellValueFactory(new PropertyValueFactory<>("MS_Tai_Lon"));
         tblC_ChuKy_21Ngay.setCellValueFactory(new PropertyValueFactory<>("Chu_Ky_21_Ngay"));
         tblC_ChuKy_42Ngay.setCellValueFactory(new PropertyValueFactory<>("Chu_Ky_42_Ngay"));
@@ -130,5 +127,32 @@ public class QuanLyLonController implements Initializable {
         ChiTietLonNai_KiemTraChuKyMangThai_Service chiTietLonNai_kiemTraChuKyMangThai_service = new ChiTietLonNai_KiemTraChuKyMangThai_ServiceImpl();
         List<ChiTietLonNai_KiemTraChuKyMangThai> list = chiTietLonNai_kiemTraChuKyMangThai_service.LayDanhSach_ChiTietLonNai_KiemTraChuKyMangThai();
         tableViewKiemTraChuKyMangThai.setItems(ClassTableModel.setTable_ChiTietLonNai_KiemTraChuKyMangThai(list));
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        HienThiTableView_KiemTraChuKyMangThai();
+        HienThiTableView_VacXin();
+
+        tableViewKiemTraChuKyMangThai.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                txtMaTaiLon_QuanLyLonNai.setText(tableViewKiemTraChuKyMangThai.getSelectionModel().getSelectedItem().getMS_Tai_Lon() + "");
+            }
+        });
+    }
+
+    private void HienThiTableView_VacXin() {
+        tblC_MaTai_VacXin.setCellValueFactory(new PropertyValueFactory<>("MS_Tai_Lon"));
+        tblC_Ta.setCellValueFactory(new PropertyValueFactory<>("Ta"));
+        tblC_ECOLI.setCellValueFactory(new PropertyValueFactory<>("ECOLI"));
+        tblC_TayGiun.setCellValueFactory(new PropertyValueFactory<>("Tay_Giun"));
+        tblC_PARVO.setCellValueFactory(new PropertyValueFactory<>("PARVO"));
+        tblC_FE_COC.setCellValueFactory(new PropertyValueFactory<>("FE_COC_3_Ngay"));
+        tblC_Suyen.setCellValueFactory(new PropertyValueFactory<>("Suyen_14_Ngay"));
+        tblC_PRRS.setCellValueFactory(new PropertyValueFactory<>("PRRS_21_Ngay"));
+        ChiTietLonNai_VacXin_Service chiTietLonNai_vacXin_service = new ChiTietLonNai_VacXin_ServiceImpl();
+        List<ChiTietLonNai_VacXin> list = chiTietLonNai_vacXin_service.LayDanhSach_ChiTietLonNai_VacXin();
+        tableViewVacXin.setItems(ClassTableModel.setTable_ChiTietLonNai_VacXin(list));
     }
 }
