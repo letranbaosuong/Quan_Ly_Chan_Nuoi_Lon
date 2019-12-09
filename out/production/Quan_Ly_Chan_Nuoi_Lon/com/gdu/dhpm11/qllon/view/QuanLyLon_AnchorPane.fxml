@@ -86,7 +86,7 @@
                                  <children>
                                     <AnchorPane nodeOrientation="LEFT_TO_RIGHT">
                                        <children>
-                                          <TextField fx:id="txtTimKiem" alignment="CENTER" layoutX="2.0" layoutY="3.0" prefHeight="25.0" prefWidth="127.0" promptText="Tìm kiếm" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <TextField fx:id="txtTimKiemSoMaTai" alignment="CENTER" layoutX="2.0" layoutY="3.0" prefHeight="25.0" prefWidth="127.0" promptText="     Nhập số mã tai" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                           <ImageView fitHeight="26.0" fitWidth="30.0" layoutX="3.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <image>
                                                 <Image url="@../images/icons8-search-property-48.png" />

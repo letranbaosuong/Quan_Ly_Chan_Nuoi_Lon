@@ -14,6 +14,8 @@ import com.gdu.dhpm11.qllon.utility.Class_TableView_ChiTietLonNai_VacXin;
 import com.gdu.dhpm11.qllon.utility.Ham;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -61,7 +63,7 @@ public class QuanLyLonController implements Initializable {
     private TableColumn<Class_TableView_ChiTietLonNai_KiemTraChuKyMangThai, Date> tblC_DeDuKien;
 
     @FXML
-    private TextField txtTimKiem;
+    private TextField txtTimKiemSoMaTai;
 
     @FXML
     private Button btnThem;
@@ -161,6 +163,44 @@ public class QuanLyLonController implements Initializable {
         ChiTietLonNai_Service chiTietLonNai_kiemTraChuKyMangThai_service = new ChiTietLonNai_ServiceImpl();
         List<ChiTietLonNai> list = chiTietLonNai_kiemTraChuKyMangThai_service.LayDanhSach_ChiTietLonNai_KiemTraChuKyMangThai();
         tableViewKiemTraChuKyMangThai.setItems(ClassTableModel.setTable_ChiTietLonNai_KiemTraChuKyMangThai(list));
+
+        // Tim kiem ma so tai lon theo ma
+        // Wrap the ObservableList in a FilteredList (initially display all data).
+        FilteredList<Class_TableView_ChiTietLonNai_KiemTraChuKyMangThai> filteredData = new FilteredList<>(ClassTableModel.setTable_ChiTietLonNai_KiemTraChuKyMangThai(list), b -> true);
+
+        // 2. Set the filter Predicate whenever the filter changes.
+        txtTimKiemSoMaTai.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(chiTietLonNai_kiemTraChuKyMangThai -> {
+                // If filter text is empty, display all persons.
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (Integer.toString(chiTietLonNai_kiemTraChuKyMangThai.getMS_Tai_Lon()).toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true; // Filter matches MS_Tai_Lon.
+                }
+//                else if (chiTietLonNai_kiemTraChuKyMangThai.getChu_Ky_21_Ngay().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+//                    return true; // Filter matches last name.
+//                } else if (chiTietLonNai_kiemTraChuKyMangThai.getChu_Ky_42_Ngay().indexOf(lowerCaseFilter) != -1)
+//                    return true;
+//                else
+                return false; // Does not match.
+            });
+        });
+
+        // 3. Wrap the FilteredList in a SortedList.
+        SortedList<Class_TableView_ChiTietLonNai_KiemTraChuKyMangThai> sortedData = new SortedList<>(filteredData);
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        // 	  Otherwise, sorting the TableView would have no effect.
+        sortedData.comparatorProperty().bind(tableViewKiemTraChuKyMangThai.comparatorProperty());
+
+        // 5. Add sorted (and filtered) data to the table.
+        tableViewKiemTraChuKyMangThai.setItems(sortedData);
     }
 
     private void HienThiTableView_VacXin() {
@@ -175,5 +215,43 @@ public class QuanLyLonController implements Initializable {
         ChiTietLonNai_Service chiTietLonNai_vacXin_service = new ChiTietLonNai_ServiceImpl();
         List<ChiTietLonNai> list = chiTietLonNai_vacXin_service.LayDanhSach_ChiTietLonNai_VacXin();
         tableViewVacXin.setItems(ClassTableModel.setTable_ChiTietLonNai_VacXin(list));
+
+        // Tim kiem ma so tai lon theo ma
+        // Wrap the ObservableList in a FilteredList (initially display all data).
+        FilteredList<Class_TableView_ChiTietLonNai_VacXin> filteredData = new FilteredList<>(ClassTableModel.setTable_ChiTietLonNai_VacXin(list), b -> true);
+
+        // 2. Set the filter Predicate whenever the filter changes.
+        txtTimKiemSoMaTai.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(chiTietLonNai_vacXin -> {
+                // If filter text is empty, display all persons.
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (Integer.toString(chiTietLonNai_vacXin.getMS_Tai_Lon()).toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true; // Filter matches MS_Tai_Lon.
+                }
+//                else if (chiTietLonNai_vacXin.getTa().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+//                    return true; // Filter matches last name.
+//                } else if (chiTietLonNai_vacXin.getTay_Giun().indexOf(lowerCaseFilter) != -1)
+//                    return true;
+//                else
+                return false; // Does not match.
+            });
+        });
+
+        // 3. Wrap the FilteredList in a SortedList.
+        SortedList<Class_TableView_ChiTietLonNai_VacXin> sortedData = new SortedList<>(filteredData);
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        // 	  Otherwise, sorting the TableView would have no effect.
+        sortedData.comparatorProperty().bind(tableViewVacXin.comparatorProperty());
+
+        // 5. Add sorted (and filtered) data to the table.
+        tableViewVacXin.setItems(sortedData);
     }
 }
