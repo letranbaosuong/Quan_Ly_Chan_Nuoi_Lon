@@ -1,5 +1,6 @@
 package com.gdu.dhpm11.qllon.model;
 
+import com.gdu.dhpm11.qllon.utility.Ham;
 import javafx.beans.property.*;
 
 import java.text.DateFormat;
@@ -25,93 +26,15 @@ public class ChiTietLonNai extends Lon {
     private int So_Con_Chet_Theo_Me;
     private Date Ngay_Xuat_Lon_Nai;
     private int Gia_Ban_Lon_Nai;
-
-    //    private static final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-    private static final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-    public LocalDate convertToLocalDateViaSqlDate(Date dateToConvert) {
-        return new java.sql.Date(dateToConvert.getTime()).toLocalDate();
-    }
-
-    public Date convertToDateViaSqlDate(LocalDate dateToConvert) {
-        return java.sql.Date.valueOf(dateToConvert);
-    }
-
-    private void Test() {
-        /*
-        // Test
-        System.out.println(dateFormat.format(ngayCanCong));
-
-        // convert date to calendar
-        Calendar c = Calendar.getInstance();
-        c.setTime(ngayCanCong);
-
-        // manipulate date
-        c.add(Calendar.YEAR, 0);
-        c.add(Calendar.MONTH, 0);
-        c.add(Calendar.DATE, soNgayCanCong); //same with c.add(Calendar.DAY_OF_MONTH, 1);
-        c.add(Calendar.HOUR, 0);
-        c.add(Calendar.MINUTE, 0);
-        c.add(Calendar.SECOND, 0);
-
-        // convert calendar to date
-        Date ngayDaCong = c.getTime();
-
-        System.out.println(dateFormat.format(ngayDaCong));
-
-        return ngayDaCong;
-
-        System.out.println("Today: " + LocalDate.now());
-        System.out.println("Tomorrow: " + LocalDate.now().plusDays(1));
-        System.out.println("yesterday: " + LocalDate.now().minusDays(1));
-        System.out.println("Next week: " + LocalDate.now().plusWeeks(1));
-        System.out.println("Next month: " + LocalDate.now().plusMonths(1));
-        System.out.println("Next year: " + LocalDate.now().plusYears(1));
-        System.out.println("Before year: " + LocalDate.now().minusYears(1));
-
-        String date = "2019-11-27";
-
-        //default, ISO_LOCAL_DATE
-        LocalDate localDate = LocalDate.parse(date);
-        System.out.println(localDate);
-//        LocalDate localDate = LocalDate.parse(date, dateTimeFormatter);
-        localDate = localDate.plusDays(4);
-        System.out.println(dateTimeFormatter.format(localDate));
-
-        */
-
-        try {
-            String sDate1 = "2019-11-08";
-            Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);
-            System.out.println(sDate1);
-            System.out.println(CongNgay(date1, 115));
-        } catch (ParseException e) {
-            System.out.println("Loi Test() : " + e.toString());
-        }
-    }
-
-    private Date CongNgay(Date ngayCanCong, int soNgayCanCong) {
-
-        LocalDate ngayTam = convertToLocalDateViaSqlDate(ngayCanCong);
-        ngayTam = ngayTam.plusDays(soNgayCanCong);
-
-        return convertToDateViaSqlDate(ngayTam);
-    }
-
-    private Date TruNgay(Date ngayCanTru, int soNgayCanTru) {
-        LocalDate ngayTam = convertToLocalDateViaSqlDate(ngayCanTru);
-        ngayTam = ngayTam.minusDays(soNgayCanTru);
-
-        return convertToDateViaSqlDate(ngayTam);
-    }
+    private int MS_Tai_Lon;
 
     public ChiTietLonNai() {
         super();
+        Ham ham = new Ham();
         this.MS_Chi_Tiet_Lon_Nai = 1;
         this.Ngay_Nhap_Lon_Nai = new Date();
-        this.Ngay_Phoi = CongNgay(this.Ngay_Nhap_Lon_Nai,180);
-        this.Ngay_De = CongNgay(this.Ngay_Phoi,115);
+        this.Ngay_Phoi = ham.CongNgay(this.Ngay_Nhap_Lon_Nai, 180);
+        this.Ngay_De = ham.CongNgay(this.Ngay_Phoi, 115);
         this.Chu_Ky = 1;
         this.So_Lan_Phoi = 0;
         this.So_Lan_De = 0;
@@ -120,7 +43,7 @@ public class ChiTietLonNai extends Lon {
         this.So_Con_Chet_Kho = 0;
         this.So_Con_Di_Tat = 0;
         this.So_Con_Chet_Theo_Me = 0;
-        this.Ngay_Xuat_Lon_Nai = CongNgay(Ngay_Nhap_Lon_Nai,365);
+        this.Ngay_Xuat_Lon_Nai = ham.CongNgay(Ngay_Nhap_Lon_Nai, 365);
         this.Gia_Ban_Lon_Nai = 30000;
     }
 
@@ -254,6 +177,16 @@ public class ChiTietLonNai extends Lon {
     }
 
     @Override
+    public int getMS_Tai_Lon() {
+        return MS_Tai_Lon;
+    }
+
+    @Override
+    public void setMS_Tai_Lon(int MS_Tai_Lon) {
+        this.MS_Tai_Lon = MS_Tai_Lon;
+    }
+
+    @Override
     public String toString() {
         return "ChiTietLonNai{" +
                 "MS_Chi_Tiet_Lon_Nai=" + MS_Chi_Tiet_Lon_Nai +
@@ -270,10 +203,7 @@ public class ChiTietLonNai extends Lon {
                 ", So_Con_Chet_Theo_Me=" + So_Con_Chet_Theo_Me +
                 ", Ngay_Xuat_Lon_Nai=" + Ngay_Xuat_Lon_Nai +
                 ", Gia_Ban_Lon_Nai=" + Gia_Ban_Lon_Nai +
+                ", MS_Tai_Lon=" + MS_Tai_Lon +
                 '}';
-    }
-
-    public static void main(String[] args) {
-        new ChiTietLonNai();
     }
 }

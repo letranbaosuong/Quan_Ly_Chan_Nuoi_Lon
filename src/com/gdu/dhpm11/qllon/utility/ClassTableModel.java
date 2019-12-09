@@ -1,9 +1,6 @@
 package com.gdu.dhpm11.qllon.utility;
 
-import com.gdu.dhpm11.qllon.model.ChiTietLonNai_KiemTraChuKyMangThai;
-import com.gdu.dhpm11.qllon.model.ChiTietLonNai_VacXin;
-import com.gdu.dhpm11.qllon.service.ChiTietLonNai_KiemTraChuKyMangThai_Service;
-import com.gdu.dhpm11.qllon.service.ChiTietLonNai_KiemTraChuKyMangThai_ServiceImpl;
+import com.gdu.dhpm11.qllon.model.ChiTietLonNai;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -12,13 +9,13 @@ import java.util.List;
 
 public class ClassTableModel {
 
-    public static ObservableList setTable_ChiTietLonNai_KiemTraChuKyMangThai(List<ChiTietLonNai_KiemTraChuKyMangThai> danhSach_ChiTietLonNai_KiemTraChuKyMangThai) {
+    public static ObservableList setTable_ChiTietLonNai_KiemTraChuKyMangThai(List<ChiTietLonNai> danhSach_ChiTietLonNai_KiemTraChuKyMangThai) {
         ObservableList<Class_TableView_ChiTietLonNai_KiemTraChuKyMangThai> duLieuTableView_KiemTraChuKyMangThai = FXCollections.observableArrayList();
 
         int rows = danhSach_ChiTietLonNai_KiemTraChuKyMangThai.size();
         if (rows > 0) {
             for (int i = 0; i < rows; i++) {
-                ChiTietLonNai_KiemTraChuKyMangThai chiTietLonNai_kiemTraChuKyMangThai = danhSach_ChiTietLonNai_KiemTraChuKyMangThai.get(i);
+                ChiTietLonNai chiTietLonNai_kiemTraChuKyMangThai = danhSach_ChiTietLonNai_KiemTraChuKyMangThai.get(i);
                 Date ngay_Phoi = chiTietLonNai_kiemTraChuKyMangThai.getNgay_Phoi();
                 Ham ham = new Ham();
                 Date chu_Ky_21_Ngay = ham.CongNgay(ngay_Phoi, 21);
@@ -30,13 +27,13 @@ public class ClassTableModel {
         return duLieuTableView_KiemTraChuKyMangThai;
     }
 
-    public static ObservableList setTable_ChiTietLonNai_VacXin(List<ChiTietLonNai_VacXin> danhSach_ChiTietLonNai_VacXin) {
+    public static ObservableList setTable_ChiTietLonNai_VacXin(List<ChiTietLonNai> danhSach_ChiTietLonNai_VacXin) {
         ObservableList<Class_TableView_ChiTietLonNai_VacXin> duLieuTableView_VacXin = FXCollections.observableArrayList();
 
         int rows = danhSach_ChiTietLonNai_VacXin.size();
         if (rows > 0) {
             for (int i = 0; i < rows; i++) {
-                ChiTietLonNai_VacXin chiTietLonNai_vacXin = danhSach_ChiTietLonNai_VacXin.get(i);
+                ChiTietLonNai chiTietLonNai_vacXin = danhSach_ChiTietLonNai_VacXin.get(i);
                 Date ngay_Phoi = chiTietLonNai_vacXin.getNgay_Phoi();
                 Date ngay_De = chiTietLonNai_vacXin.getNgay_De();
                 Ham ham = new Ham();
@@ -59,4 +56,5 @@ public class ClassTableModel {
         }
         return duLieuTableView_VacXin;
     }
+
 }
