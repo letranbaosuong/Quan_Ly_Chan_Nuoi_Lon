@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -60,6 +61,19 @@ public class ChuyenManHinhController implements Initializable {
         Stage stage = (Stage) ManHinh_Main_BorderPane.getScene().getWindow();
         stage.close();
     }
+
+    @FXML
+    void onMouseCliked_Maximize(MouseEvent event) {
+        Stage stage = (Stage) ManHinh_Main_BorderPane.getScene().getWindow();
+        stage.setFullScreen(true);
+    }
+
+    @FXML
+    void onMouseCliked_Minimize(MouseEvent event) {
+        Stage stage = (Stage) ManHinh_Main_BorderPane.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
 
     private void loadUI(String ui) {
 

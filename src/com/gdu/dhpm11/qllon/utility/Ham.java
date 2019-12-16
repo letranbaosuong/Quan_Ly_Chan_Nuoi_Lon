@@ -3,6 +3,7 @@ package com.gdu.dhpm11.qllon.utility;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -103,5 +104,18 @@ public class Ham {
 
     public LocalDate StringToLocalDate(String date) {
         return LocalDate.parse(date, dateTimeFormatter);
+    }
+
+    public long TuoiLon(String ngayNhapChuong, String ngayHienTai) {
+        LocalDate d1 = LocalDate.parse(ngayNhapChuong, DateTimeFormatter.ISO_LOCAL_DATE);
+        LocalDate d2 = LocalDate.parse(ngayHienTai, DateTimeFormatter.ISO_LOCAL_DATE);
+        Duration diff = Duration.between(d1.atStartOfDay(), d2.atStartOfDay());
+        long diffDays = diff.toDays();
+        return diffDays;
+    }
+
+    public static void main(String[] args) {
+        Ham ham = new Ham();
+        System.out.println(ham.TuoiLon("2019-12-01", LocalDate.now().toString()));
     }
 }

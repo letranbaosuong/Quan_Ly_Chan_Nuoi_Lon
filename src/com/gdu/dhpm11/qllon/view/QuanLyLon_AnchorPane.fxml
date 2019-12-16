@@ -64,15 +64,16 @@
                                        <children>
                                                   <TableView fx:id="tableViewKiemTraChuKyMangThai" prefHeight="160.0" prefWidth="723.0">
                                                       <columns>
-                                                          <TableColumn fx:id="tblC_MaTai_ChuKyMangThai" prefWidth="75.0" text="Mã tai" />
+                                                          <TableColumn fx:id="tblC_MaTai_ChuKyMangThai" prefWidth="60.0" text="Mã tai" />
+                                                <TableColumn fx:id="tblC_ChuKyDe_ChuKyMangThai" prefWidth="65.0" text="Chu kỳ đẻ" />
                                                           <TableColumn prefWidth="500.0" text="Kiểm tra chu kỳ mang thai (ngày)">
                                                    <columns>
-                                                      <TableColumn fx:id="tblC_ChuKy_21Ngay" prefWidth="167.0" text="21" />
-                                                      <TableColumn fx:id="tblC_ChuKy_42Ngay" prefWidth="165.0" text="42" />
-                                                      <TableColumn fx:id="tblC_ChuKy_84Ngay" prefWidth="168.0" text="84" />
+                                                      <TableColumn fx:id="tblC_ChuKy_21Ngay" prefWidth="150.0" text="21" />
+                                                      <TableColumn fx:id="tblC_ChuKy_42Ngay" prefWidth="150.0" text="42" />
+                                                      <TableColumn fx:id="tblC_ChuKy_84Ngay" prefWidth="150.0" text="84" />
                                                    </columns>
                                                 </TableColumn>
-                                                <TableColumn fx:id="tblC_DeDuKien" prefWidth="147.0" text="Đẻ dự kiến" />
+                                                <TableColumn fx:id="tblC_DeDuKien" prefWidth="150.0" text="Đẻ dự kiến" />
                                                       </columns>
                                                   </TableView>
                                        </children>
@@ -141,16 +142,17 @@
                            <children>
                               <TableView fx:id="tableViewVacXin" prefHeight="155.0" prefWidth="870.0" HBox.hgrow="ALWAYS">
                                  <columns>
-                                    <TableColumn fx:id="tblC_MaTai_VacXin" prefWidth="75.0" text="Mã tai" />
-                                    <TableColumn prefWidth="771.0" text="Vác-xin">
+                                    <TableColumn fx:id="tblC_MaTai_VacXin" prefWidth="90.0" text="Mã tai" />
+                                    <TableColumn fx:id="tblC_ChuKyDe_VacXin" prefWidth="90.0" text="Chu kỳ đẻ" />
+                                    <TableColumn prefWidth="749.0" text="Vác-xin">
                                        <columns>
-                                          <TableColumn fx:id="tblC_Ta" prefWidth="86.0" text="Tả" />
-                                          <TableColumn fx:id="tblC_ECOLI" prefWidth="92.0" text="ECOLI" />
-                                          <TableColumn fx:id="tblC_TayGiun" prefWidth="108.0" text="Tẩy giun" />
-                                          <TableColumn fx:id="tblC_PARVO" prefWidth="97.0" text="PARVO" />
-                                          <TableColumn fx:id="tblC_FE_COC" prefWidth="129.0" text="FE+COC (3 ngày)" />
-                                          <TableColumn fx:id="tblC_Suyen" prefWidth="133.0" text="Suyễn (14 ngày)" />
-                                          <TableColumn fx:id="tblC_PRRS" prefWidth="160.0" text="PRRS (21 ngày)" />
+                                          <TableColumn fx:id="tblC_Ta" prefWidth="100.0" text="Tả" />
+                                          <TableColumn fx:id="tblC_ECOLI" prefWidth="100.0" text="ECOLI" />
+                                          <TableColumn fx:id="tblC_TayGiun" prefWidth="100.0" text="Tẩy giun" />
+                                          <TableColumn fx:id="tblC_PARVO" prefWidth="100.0" text="PARVO" />
+                                          <TableColumn fx:id="tblC_FE_COC" prefWidth="100.0" text="FE+COC (3 ngày)" />
+                                          <TableColumn fx:id="tblC_Suyen" prefWidth="100.0" text="Suyễn (14 ngày)" />
+                                          <TableColumn fx:id="tblC_PRRS" prefWidth="100.0" text="PRRS (21 ngày)" />
                                        </columns>
                                     </TableColumn>
                                  </columns>

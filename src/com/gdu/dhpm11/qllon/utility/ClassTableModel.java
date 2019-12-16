@@ -21,7 +21,7 @@ public class ClassTableModel {
                 Date chu_Ky_21_Ngay = ham.CongNgay(ngay_Phoi, 21);
                 Date chu_Ky_42_Ngay = ham.CongNgay(ngay_Phoi, 42);
                 Date chu_Ky_84_Ngay = ham.CongNgay(ngay_Phoi, 84);
-                duLieuTableView_KiemTraChuKyMangThai.add(new Class_TableView_ChiTietLonNai_KiemTraChuKyMangThai(chiTietLonNai_kiemTraChuKyMangThai.getMS_Tai_Lon(), ham.DateToString(chu_Ky_21_Ngay), ham.DateToString(chu_Ky_42_Ngay), ham.DateToString(chu_Ky_84_Ngay), ham.DateToString(chiTietLonNai_kiemTraChuKyMangThai.getNgay_De())));
+                duLieuTableView_KiemTraChuKyMangThai.add(new Class_TableView_ChiTietLonNai_KiemTraChuKyMangThai(chiTietLonNai_kiemTraChuKyMangThai.getMS_Tai_Lon(), chiTietLonNai_kiemTraChuKyMangThai.getChu_Ky(), ham.DateToString(chu_Ky_21_Ngay), ham.DateToString(chu_Ky_42_Ngay), ham.DateToString(chu_Ky_84_Ngay), ham.DateToString(chiTietLonNai_kiemTraChuKyMangThai.getNgay_De())));
             }
         }
         return duLieuTableView_KiemTraChuKyMangThai;
@@ -44,7 +44,7 @@ public class ClassTableModel {
                 Date fe_coc_3_ngay = ham.CongNgay(ngay_De, 3);
                 Date suyen_14_ngay = ham.CongNgay(ngay_De, 14);
                 Date prrs_21_ngay = ham.CongNgay(ngay_De, 21);
-                duLieuTableView_VacXin.add(new Class_TableView_ChiTietLonNai_VacXin(chiTietLonNai_vacXin.getMS_Tai_Lon(),
+                duLieuTableView_VacXin.add(new Class_TableView_ChiTietLonNai_VacXin(chiTietLonNai_vacXin.getMS_Tai_Lon(), chiTietLonNai_vacXin.getChu_Ky(),
                         ham.DateToString(ta),
                         ham.DateToString(ecoli),
                         ham.DateToString(tayGiun),

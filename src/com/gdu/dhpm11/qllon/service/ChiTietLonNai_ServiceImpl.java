@@ -4,31 +4,59 @@ import com.gdu.dhpm11.qllon.dao.ChiTietLonNai_DAO;
 import com.gdu.dhpm11.qllon.dao.ChiTietLonNai_DAOImpl;
 import com.gdu.dhpm11.qllon.model.ChiTietLonNai;
 
+import java.sql.Date;
 import java.util.List;
 
 public class ChiTietLonNai_ServiceImpl implements ChiTietLonNai_Service {
-    private ChiTietLonNai_DAO chiTietLonNai_kiemTraChuKyMangThai_dao = null;
-    private ChiTietLonNai_DAO chiTietLonNai_vacXin_dao = null;
-    private ChiTietLonNai_DAO chiTietLonNai_caThe_dao = null;
+    private ChiTietLonNai_DAO chiTietLonNai_dao = null;
 
     public ChiTietLonNai_ServiceImpl() {
-        chiTietLonNai_kiemTraChuKyMangThai_dao = new ChiTietLonNai_DAOImpl();
-        chiTietLonNai_vacXin_dao = new ChiTietLonNai_DAOImpl();
-        chiTietLonNai_caThe_dao = new ChiTietLonNai_DAOImpl();
+        chiTietLonNai_dao = new ChiTietLonNai_DAOImpl();
     }
 
     @Override
     public List<ChiTietLonNai> LayDanhSach_ChiTietLonNai_KiemTraChuKyMangThai() {
-        return chiTietLonNai_kiemTraChuKyMangThai_dao.LayDanhSach_ChiTietLonNai_KiemTraChuKyMangThai();
+        return chiTietLonNai_dao.LayDanhSach_ChiTietLonNai_KiemTraChuKyMangThai();
     }
 
     @Override
     public List<ChiTietLonNai> LayDanhSach_ChiTietLonNai_VacXin() {
-        return chiTietLonNai_vacXin_dao.LayDanhSach_ChiTietLonNai_VacXin();
+        return chiTietLonNai_dao.LayDanhSach_ChiTietLonNai_VacXin();
+    }
+
+    @Override
+    public List<ChiTietLonNai> LayChiTietLonNai_CaThe(int MS_Tai_Lon, int Chu_Ky) {
+        return chiTietLonNai_dao.LayChiTietLonNai_CaThe(MS_Tai_Lon, Chu_Ky);
     }
 
     @Override
     public List<ChiTietLonNai> LayChiTietLonNai_CaThe(int MS_Tai_Lon) {
-        return chiTietLonNai_caThe_dao.LayChiTietLonNai_CaThe(MS_Tai_Lon);
+        return chiTietLonNai_dao.LayChiTietLonNai_CaThe(MS_Tai_Lon);
     }
+
+    @Override
+    public int Xoa_ChiTietLonNai(int MS_Tai_Lon) {
+        return chiTietLonNai_dao.Xoa_ChiTietLonNai(MS_Tai_Lon);
+    }
+
+    @Override
+    public int Xoa_LonNai(int MS_Tai_Lon) {
+        return chiTietLonNai_dao.Xoa_LonNai(MS_Tai_Lon);
+    }
+
+    @Override
+    public int Them_ChiTietLonNai(int MS_Tai_Lon, Date Ngay_Nhap_Lon_Nai, Date Ngay_Phoi, Date Ngay_De, int Chu_Ky) {
+        return chiTietLonNai_dao.Them_ChiTietLonNai(MS_Tai_Lon, Ngay_Nhap_Lon_Nai, Ngay_Phoi, Ngay_De, Chu_Ky);
+    }
+
+    @Override
+    public int Them_LonNai(int MS_Tai_Lon, String Tuoi_Lon) {
+        return chiTietLonNai_dao.Them_LonNai(MS_Tai_Lon, Tuoi_Lon);
+    }
+
+    @Override
+    public List<ChiTietLonNai> KiemTraMS_Tai_Lon(int MS_Tai_Lon) {
+        return chiTietLonNai_dao.KiemTraMS_Tai_Lon(MS_Tai_Lon);
+    }
+
 }

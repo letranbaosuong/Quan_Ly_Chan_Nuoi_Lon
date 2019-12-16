@@ -8,6 +8,7 @@ import java.util.Date;
 
 public class Class_TableView_ChiTietLonNai_VacXin {
     private SimpleIntegerProperty MS_Tai_Lon;
+    private SimpleIntegerProperty Chu_Ky;
     private SimpleStringProperty Ta;
     private SimpleStringProperty ECOLI;
     private SimpleStringProperty Tay_Giun;
@@ -16,8 +17,9 @@ public class Class_TableView_ChiTietLonNai_VacXin {
     private SimpleStringProperty Suyen_14_Ngay;
     private SimpleStringProperty PRRS_21_Ngay;
 
-    public Class_TableView_ChiTietLonNai_VacXin(int MS_Tai_Lon, String ta, String ECOLI, String tay_Giun, String PARVO, String FE_COC_3_Ngay, String suyen_14_Ngay, String PRRS_21_Ngay) {
+    public Class_TableView_ChiTietLonNai_VacXin(int MS_Tai_Lon,int chu_Ky, String ta, String ECOLI, String tay_Giun, String PARVO, String FE_COC_3_Ngay, String suyen_14_Ngay, String PRRS_21_Ngay) {
         this.MS_Tai_Lon = new SimpleIntegerProperty(MS_Tai_Lon);
+        this.Chu_Ky = new SimpleIntegerProperty(chu_Ky);
         Ta = new SimpleStringProperty(ta);
         this.ECOLI = new SimpleStringProperty(ECOLI);
         Tay_Giun = new SimpleStringProperty(tay_Giun);
@@ -37,6 +39,18 @@ public class Class_TableView_ChiTietLonNai_VacXin {
 
     public void setMS_Tai_Lon(int MS_Tai_Lon) {
         this.MS_Tai_Lon.set(MS_Tai_Lon);
+    }
+
+    public int getChu_Ky() {
+        return Chu_Ky.get();
+    }
+
+    public SimpleIntegerProperty chu_KyProperty() {
+        return Chu_Ky;
+    }
+
+    public void setChu_Ky(int chu_Ky) {
+        this.Chu_Ky.set(chu_Ky);
     }
 
     public String getTa() {
