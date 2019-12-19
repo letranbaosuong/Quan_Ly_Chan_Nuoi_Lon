@@ -95,7 +95,7 @@
                                           </ImageView>
                                        </children>
                                     </AnchorPane>
-                                    <Button fx:id="btnThem" defaultButton="true" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Thêm   ">
+                                    <Button fx:id="btnThem" defaultButton="true" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Lưu      ">
                                        <graphic>
                                           <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                              <image>

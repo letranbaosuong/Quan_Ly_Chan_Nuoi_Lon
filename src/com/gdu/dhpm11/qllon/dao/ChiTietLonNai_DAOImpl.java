@@ -9,9 +9,47 @@ import java.util.List;
 
 public class ChiTietLonNai_DAOImpl implements ChiTietLonNai_DAO {
     @Override
-    public List<ChiTietLonNai> getListChiTietLonNaiDAO() {
+    public List<ChiTietLonNai> getAll() {
         Connection cons = DBConnect.getJDBCConnection();
         String sql = "SELECT * FROM `chi_tiet_lon_nai`";
+        List<ChiTietLonNai> chiTietLonNaiList = new ArrayList<>();
+        try {
+            PreparedStatement ps = cons.prepareCall(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ChiTietLonNai chiTietLonNai = new ChiTietLonNai();
+                chiTietLonNai.setMS_Chi_Tiet_Lon_Nai(rs.getInt("MS_Chi_Tiet_Lon_Nai"));
+                chiTietLonNai.setNgay_Nhap_Lon_Nai(rs.getDate("Ngay_Nhap_Lon_Nai"));
+                chiTietLonNai.setNgay_Phoi(rs.getDate("Ngay_Phoi"));
+                chiTietLonNai.setNgay_De(rs.getDate("Ngay_De"));
+                chiTietLonNai.setChu_Ky(rs.getInt("Chu_Ky"));
+                chiTietLonNai.setSo_Lan_Phoi(rs.getInt("So_Lan_Phoi"));
+                chiTietLonNai.setSo_Lan_De(rs.getInt("So_Lan_De"));
+                chiTietLonNai.setSo_Con_Con(rs.getInt("So_Con_Con"));
+                chiTietLonNai.setSo_Con_Chet(rs.getInt("So_Con_Chet"));
+                chiTietLonNai.setSo_Con_Chet_Kho(rs.getInt("So_Con_Chet_Kho"));
+                chiTietLonNai.setSo_Con_Di_Tat(rs.getInt("So_Con_Di_Tat"));
+                chiTietLonNai.setSo_Con_Chet_Theo_Me(rs.getInt("So_Con_Chet_Theo_Me"));
+                chiTietLonNai.setNgay_Xuat_Lon_Nai(rs.getDate("Ngay_Xuat_Lon_Nai"));
+                chiTietLonNai.setGia_Ban_Lon_Nai(rs.getInt("Gia_Ban_Lon_Nai"));
+                chiTietLonNai.setMS_Tai_Lon(rs.getInt("MS_Tai_Lon"));
+
+                chiTietLonNaiList.add(chiTietLonNai);
+            }
+            ps.close();
+            rs.close();
+            cons.close();
+            return chiTietLonNaiList;
+        } catch (SQLException e) {
+            System.out.println("Loi public List<ChiTietLonNai> getAll() {} trong package com.gdu.dhpm11.qllon.dao; : " + e.toString());
+        }
+        return null;
+    }
+
+    @Override
+    public List<ChiTietLonNai> getListChiTietLonNai(int MS_Tai_Lon, int Chu_Ky) {
+        Connection cons = DBConnect.getJDBCConnection();
+        String sql = "SELECT * FROM `chi_tiet_lon_nai` WHERE MS_Tai_Lon = " + MS_Tai_Lon + " AND Chu_Ky = " + Chu_Ky;
         List<ChiTietLonNai> chiTietLonNaiList = new ArrayList<>();
         try {
             PreparedStatement ps = cons.prepareCall(sql);
@@ -259,6 +297,31 @@ public class ChiTietLonNai_DAOImpl implements ChiTietLonNai_DAO {
             System.out.println("Loi List<ChiTietLonNai> KiemTraMS_Tai_Lon(int MS_Tai_Lon) {} trong package com.gdu.dhpm11.qllon.dao; : " + e.toString());
         }
         return null;
+    }
+
+    @Override
+    public int CapNhatChiTietLonNai(int MS_tai_Lon, int Chu_Ky, int So_Con_Con, int So_Con_Chet, Date Ngay_Nhap, Date Ngay_Phoi, Date Ngay_De) {
+        Connection cons = DBConnect.getJDBCConnection();
+
+        String sql = "UPDATE `chi_tiet_lon_nai` SET `Ngay_Nhap_Lon_Nai`= ?,`Ngay_Phoi`=?,`Ngay_De`=?,`So_Con_Con`=?,`So_Con_Chet`=? WHERE MS_Tai_Lon= ? AND Chu_Ky = ?";
+        int rs = 0;
+        try {
+            PreparedStatement ps = cons.prepareStatement(sql);
+            ps.setDate(1, Ngay_Nhap);
+            ps.setDate(2, Ngay_Phoi);
+            ps.setDate(3, Ngay_De);
+            ps.setInt(4, So_Con_Con);
+            ps.setInt(5, So_Con_Chet);
+            ps.setInt(6, MS_tai_Lon);
+            ps.setInt(7, Chu_Ky);
+            rs = ps.executeUpdate();
+            ps.close();
+            cons.close();
+            return rs;
+        } catch (SQLException e) {
+            System.out.println("Loi public void CapNhatChiTietLonNai(int MS_tai_Lon, int Chu_Ky, int So_Con_Con, int So_Con_Chet, Date Ngay_Nhap, Date Ngay_Phoi, Date Ngay_De) {} : " + e.toString());
+        }
+        return rs;
     }
 
 }

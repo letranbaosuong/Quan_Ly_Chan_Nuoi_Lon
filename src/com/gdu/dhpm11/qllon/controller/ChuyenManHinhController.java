@@ -30,6 +30,14 @@ public class ChuyenManHinhController implements Initializable {
     @FXML
     private BorderPane ManHinh_Main_BorderPane;
 
+    public BorderPane getManHinh_Main_BorderPane() {
+        return ManHinh_Main_BorderPane;
+    }
+
+    public void setManHinh_Main_BorderPane(BorderPane manHinh_Main_BorderPane) {
+        ManHinh_Main_BorderPane = manHinh_Main_BorderPane;
+    }
+
     @FXML
     private ImageView imgMinimize;
 

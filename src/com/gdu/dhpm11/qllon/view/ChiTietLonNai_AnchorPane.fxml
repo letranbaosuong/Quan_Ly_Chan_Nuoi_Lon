@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gdu.dhpm11.qllon.controller.ChiTietLonNaiController">
+   <children>
+      <Text layoutX="31.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mã tai:" />
+      <Text layoutX="300.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chu kỳ đẻ" />
+      <Text layoutX="31.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số con:" />
+      <TextField fx:id="txtSoCon" layoutX="118.0" layoutY="61.0" prefHeight="25.0" prefWidth="58.0" />
+      <Text layoutX="31.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số con chết:" />
+      <TextField fx:id="txtSoConChet" layoutX="118.0" layoutY="99.0" prefHeight="25.0" prefWidth="58.0" />
+      <Text layoutX="31.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tổng  số lợn:" />
+      <TextField fx:id="txtTongSoLon" layoutX="118.0" layoutY="136.0" prefHeight="25.0" prefWidth="58.0" />
+      <Text layoutX="300.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày nhập:" />
+      <Text layoutX="300.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày phối:" />
+      <Text layoutX="300.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày đẻ:" />
+      <DatePicker fx:id="datePickerNgayNhap" layoutX="377.0" layoutY="61.0" />
+      <DatePicker fx:id="datePickerNgayPhoi" layoutX="377.0" layoutY="99.0" />
+      <DatePicker fx:id="datePickerNgayDe" layoutX="377.0" layoutY="136.0" />
+      <Button fx:id="btnCapNhat" layoutX="121.0" layoutY="200.0" mnemonicParsing="false" text="Cập nhật" />
+      <Button fx:id="btnThoat" layoutX="428.0" layoutY="200.0" mnemonicParsing="false" text="Thoát" />
+      <TextField fx:id="txtMaTai" layoutX="118.0" layoutY="23.0" prefHeight="25.0" prefWidth="58.0" />
+      <TextField fx:id="txtChuKyDe" layoutX="377.0" layoutY="23.0" prefHeight="25.0" prefWidth="58.0" />
+   </children>
+</AnchorPane>

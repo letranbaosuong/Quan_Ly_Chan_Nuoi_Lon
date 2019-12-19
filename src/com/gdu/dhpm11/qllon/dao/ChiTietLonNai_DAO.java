@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface ChiTietLonNai_DAO {
 
-    public List<ChiTietLonNai> getListChiTietLonNaiDAO();
+    public List<ChiTietLonNai> getAll();
+
+    public List<ChiTietLonNai> getListChiTietLonNai(int MS_Tai_Lon, int Chu_Ky);
 
     public List<ChiTietLonNai> LayDanhSach_ChiTietLonNai_KiemTraChuKyMangThai();
 
@@ -26,5 +28,7 @@ public interface ChiTietLonNai_DAO {
     public int Them_LonNai(int MS_Tai_Lon, String Tuoi_Lon);
 
     public List<ChiTietLonNai> KiemTraMS_Tai_Lon(int MS_Tai_Lon);
+
+    public int CapNhatChiTietLonNai(int MS_tai_Lon, int Chu_Ky, int So_Con_Con, int So_Con_Chet, Date Ngay_Nhap, Date Ngay_Phoi, Date Ngay_De);
 
 }

@@ -15,6 +15,16 @@ public class ChiTietLonNai_ServiceImpl implements ChiTietLonNai_Service {
     }
 
     @Override
+    public List<ChiTietLonNai> getAll() {
+        return chiTietLonNai_dao.getAll();
+    }
+
+    @Override
+    public List<ChiTietLonNai> getListChiTietLonNai(int MS_Tai_Lon, int Chu_Ky) {
+        return chiTietLonNai_dao.getListChiTietLonNai(MS_Tai_Lon, Chu_Ky);
+    }
+
+    @Override
     public List<ChiTietLonNai> LayDanhSach_ChiTietLonNai_KiemTraChuKyMangThai() {
         return chiTietLonNai_dao.LayDanhSach_ChiTietLonNai_KiemTraChuKyMangThai();
     }
@@ -57,6 +67,11 @@ public class ChiTietLonNai_ServiceImpl implements ChiTietLonNai_Service {
     @Override
     public List<ChiTietLonNai> KiemTraMS_Tai_Lon(int MS_Tai_Lon) {
         return chiTietLonNai_dao.KiemTraMS_Tai_Lon(MS_Tai_Lon);
+    }
+
+    @Override
+    public int CapNhatChiTietLonNai(int MS_tai_Lon, int Chu_Ky, int So_Con_Con, int So_Con_Chet, Date Ngay_Nhap, Date Ngay_Phoi, Date Ngay_De) {
+        return chiTietLonNai_dao.CapNhatChiTietLonNai(MS_tai_Lon, Chu_Ky, So_Con_Con, So_Con_Chet, Ngay_Nhap, Ngay_Phoi, Ngay_De);
     }
 
 }
