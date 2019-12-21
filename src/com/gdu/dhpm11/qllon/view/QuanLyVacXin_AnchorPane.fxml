@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="650.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gdu.dhpm11.qllon.controller.QuanLyVacXinController">
    <children>
-      <Text layoutX="62.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên loại vác - xin:" />
-      <ComboBox layoutX="177.0" layoutY="59.0" prefWidth="150.0" />
-      <Text layoutX="62.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên vác - xin:" />
-      <ComboBox layoutX="177.0" layoutY="99.0" prefWidth="150.0" />
-      <Text layoutX="62.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Đơn giá:" />
-      <TextField layoutX="178.0" layoutY="139.0" />
-      <Text layoutX="62.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số lượng:" />
-      <TextField layoutX="178.0" layoutY="172.0" />
-      <Text layoutX="62.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày nhập:" />
-      <DatePicker layoutX="178.0" layoutY="207.0" />
-      <Text layoutX="62.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hạn sử dụng:" />
-      <DatePicker layoutX="178.0" layoutY="242.0" />
+      <Text fill="#127925" layoutX="251.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chức năng đang dần hoàn thiện">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Text>
+      <Text fill="#127925" layoutX="337.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vui lòng trở lại sao!">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

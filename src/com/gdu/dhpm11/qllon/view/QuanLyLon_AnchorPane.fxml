@@ -57,7 +57,16 @@
                                           <Insets />
                                        </VBox.margin>
                                        <padding>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                          <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="27.0" prefWidth="725.0" spacing="10.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Chuyển sang chuồng đẻ:" />
+                                          <TextField fx:id="txtChuyenSangChuongDe" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" />
                                        </padding>
                                     </HBox>
                                     <HBox VBox.vgrow="ALWAYS">
@@ -73,7 +82,7 @@
                                                       <TableColumn fx:id="tblC_ChuKy_84Ngay" prefWidth="150.0" text="84" />
                                                    </columns>
                                                 </TableColumn>
-                                                <TableColumn fx:id="tblC_DeDuKien" prefWidth="150.0" text="Đẻ dự kiến" />
+                                                <TableColumn fx:id="tblC_DeDuKien" prefWidth="150.0" text="Ngày đẻ" />
                                                       </columns>
                                                   </TableView>
                                        </children>
@@ -168,7 +177,19 @@
                 </Tab>
                 <Tab text="Quản Lý Lợn Thịt">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Text fill="#127925" layoutX="241.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chức năng đang dần hoàn thiện">
+                           <font>
+                              <Font size="29.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#127925" layoutX="327.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vui lòng trở lại sao!">
+                           <font>
+                              <Font size="29.0" />
+                           </font>
+                        </Text>
+                     </children></AnchorPane>
                     </content>
                 </Tab>
             </tabs>

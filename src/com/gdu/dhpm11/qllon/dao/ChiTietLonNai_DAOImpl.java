@@ -1,6 +1,9 @@
 package com.gdu.dhpm11.qllon.dao;
 
+import com.gdu.dhpm11.qllon.model.BaoCaoChiTietLonNai;
+import com.gdu.dhpm11.qllon.model.BarChartClassModel;
 import com.gdu.dhpm11.qllon.model.ChiTietLonNai;
+import com.gdu.dhpm11.qllon.model.PieChartClassModel;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -153,6 +156,7 @@ public class ChiTietLonNai_DAOImpl implements ChiTietLonNai_DAO {
                 chiTietLonNai_caThe.setNgay_Nhap_Lon_Nai(rs.getDate("Ngay_Nhap_Lon_Nai"));
                 chiTietLonNai_caThe.setNgay_Phoi(rs.getDate("Ngay_Phoi"));
                 chiTietLonNai_caThe.setChu_Ky(rs.getInt("Chu_Ky"));
+                chiTietLonNai_caThe.setNgay_De(rs.getDate("Ngay_De"));
 
                 ChiTietLonNai_CaThe_List.add(chiTietLonNai_caThe);
             }
@@ -322,6 +326,93 @@ public class ChiTietLonNai_DAOImpl implements ChiTietLonNai_DAO {
             System.out.println("Loi public void CapNhatChiTietLonNai(int MS_tai_Lon, int Chu_Ky, int So_Con_Con, int So_Con_Chet, Date Ngay_Nhap, Date Ngay_Phoi, Date Ngay_De) {} : " + e.toString());
         }
         return rs;
+    }
+
+    @Override
+    public List<PieChartClassModel> getPieChart() {
+        Connection cons = DBConnect.getJDBCConnection();
+        String sql = "SELECT MS_Tai_Lon, So_Con_Con, So_Con_Chet FROM `chi_tiet_lon_nai` ORDER BY MS_Tai_Lon ASC";
+        List<PieChartClassModel> chiTietLonNaiList = new ArrayList<>();
+        try {
+            PreparedStatement ps = cons.prepareCall(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                PieChartClassModel chiTietLonNai = new PieChartClassModel();
+                chiTietLonNai.setMS_Tai_Lon(rs.getInt("MS_Tai_Lon"));
+                chiTietLonNai.setSo_Con_Con(rs.getInt("So_Con_Con"));
+                chiTietLonNai.setSo_Con_Chet(rs.getInt("So_Con_Chet"));
+
+                chiTietLonNaiList.add(chiTietLonNai);
+            }
+            ps.close();
+            rs.close();
+            cons.close();
+            return chiTietLonNaiList;
+        } catch (SQLException e) {
+            System.out.println("Loi public List<ChiTietLonNai> getPieChart() {} trong package com.gdu.dhpm11.qllon.dao; : " + e.toString());
+        }
+        return null;
+    }
+
+    @Override
+    public List<BarChartClassModel> getBarChart(int MS_Tai_Lon) {
+        Connection cons = DBConnect.getJDBCConnection();
+        String sql = "SELECT MS_Tai_Lon, Chu_Ky, So_Con_Con, So_Con_Chet FROM `chi_tiet_lon_nai` WHERE MS_Tai_Lon = " + MS_Tai_Lon;
+        List<BarChartClassModel> chiTietLonNaiList = new ArrayList<>();
+        try {
+            PreparedStatement ps = cons.prepareCall(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                BarChartClassModel chiTietLonNai = new BarChartClassModel();
+                chiTietLonNai.setMS_Tai_Lon(rs.getInt("MS_Tai_Lon"));
+                chiTietLonNai.setChu_Ky(rs.getInt("Chu_Ky"));
+                chiTietLonNai.setSo_Con_Con(rs.getInt("So_Con_Con"));
+                chiTietLonNai.setSo_Con_Chet(rs.getInt("So_Con_Chet"));
+
+                chiTietLonNaiList.add(chiTietLonNai);
+            }
+            ps.close();
+            rs.close();
+            cons.close();
+            return chiTietLonNaiList;
+        } catch (SQLException e) {
+            System.out.println("Loi public List<BarChartClassModel> getBarChart(int MS_Tai_Lon) {} trong package com.gdu.dhpm11.qllon.dao; : " + e.toString());
+        }
+        return null;
+    }
+
+    @Override
+    public List<BaoCaoChiTietLonNai> LayBaoCaoChiTietLonNai(String tuNgay, String denNgay) {
+        Connection cons = DBConnect.getJDBCConnection();
+        String sql = "SELECT chi_tiet_lon_nai.MS_Tai_Lon, chi_tiet_lon_nai.Ngay_Phoi, chi_tiet_lon_nai.Ngay_De, chi_tiet_lon_nai.So_Con_Con, chi_tiet_lon_nai.So_Con_Chet, chi_tiet_lon_nai.Ngay_Nhap_Lon_Nai FROM chi_tiet_lon_nai INNER JOIN lon ON chi_tiet_lon_nai.MS_Tai_Lon=lon.MS_Tai_Lon WHERE Ngay_De BETWEEN '" + tuNgay + " 00:00:00' AND '" + denNgay + " 23:59:59' ORDER BY Ngay_De";
+        List<BaoCaoChiTietLonNai> chiTietLonNaiList = new ArrayList<>();
+        try {
+            PreparedStatement ps = cons.prepareCall(sql);
+            ResultSet rs = ps.executeQuery();
+            int dem = 0;
+            while (rs.next()) {
+                BaoCaoChiTietLonNai chiTietLonNai = new BaoCaoChiTietLonNai();
+                chiTietLonNai.setSTT(rs.getRow());
+                chiTietLonNai.setMS_Tai(rs.getInt("MS_Tai_Lon"));
+                chiTietLonNai.setNgay_Phoi(rs.getDate("Ngay_Phoi"));
+                chiTietLonNai.setNgay_De(rs.getDate("Ngay_De"));
+                int So_Con_Con = rs.getInt("So_Con_Con");
+                int So_Con_Chet = rs.getInt("So_Con_Chet");
+                chiTietLonNai.setTong_So_Lon(So_Con_Con);
+                chiTietLonNai.setSo_Lon_Chet(So_Con_Chet);
+                chiTietLonNai.setTong_So_Lon_Song(So_Con_Con - So_Con_Chet);
+                chiTietLonNai.setNgay_Nhap(rs.getDate("Ngay_Nhap_Lon_Nai"));
+
+                chiTietLonNaiList.add(chiTietLonNai);
+            }
+            ps.close();
+            rs.close();
+            cons.close();
+            return chiTietLonNaiList;
+        } catch (SQLException e) {
+            System.out.println("public List<BaoCaoChiTietLonNai> LayBaoCaoChiTietLonNai(String tuNgay, String denNgay) {} trong package com.gdu.dhpm11.qllon.dao; : " + e.toString());
+        }
+        return null;
     }
 
 }

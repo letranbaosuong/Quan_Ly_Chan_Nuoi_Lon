@@ -56,6 +56,9 @@ public class QuanLyLonController implements Initializable {
     private DatePicker datePickerNgayPhoi;
 
     @FXML
+    private TextField txtChuyenSangChuongDe;
+
+    @FXML
     private TableView<Class_TableView_ChiTietLonNai_KiemTraChuKyMangThai> tableViewKiemTraChuKyMangThai;
 
     @FXML
@@ -123,6 +126,7 @@ public class QuanLyLonController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        txtChuyenSangChuongDe.setEditable(false);
         setAnHien(false);
         HienThiTableView_KiemTraChuKyMangThai();
         HienThiTableView_VacXin();
@@ -331,11 +335,13 @@ public class QuanLyLonController implements Initializable {
                     int MS_Tai_Lon = chiTietLonNai_caThe.getMS_Tai_Lon();
                     Date Ngay_Nhap_Lon_Nai = chiTietLonNai_caThe.getNgay_Nhap_Lon_Nai();
                     Date Ngay_Phoi = chiTietLonNai_caThe.getNgay_Phoi();
+                    Date Ngay_De = chiTietLonNai_caThe.getNgay_De();
 
                     Ham ham = new Ham();
                     txtMaTaiLon_QuanLyLonNai.setText(Integer.toString(MS_Tai_Lon));
                     datePickerNgayNhap.setValue(ham.convertToLocalDateViaSqlDate(Ngay_Nhap_Lon_Nai));
                     datePickerNgayPhoi.setValue(ham.convertToLocalDateViaSqlDate(Ngay_Phoi));
+                    txtChuyenSangChuongDe.setText(ham.DateToString(ham.TruNgay(Ngay_De, 10)));
                 }
             }
         });
@@ -366,11 +372,13 @@ public class QuanLyLonController implements Initializable {
                     int MS_Tai_Lon = chiTietLonNai_caThe.getMS_Tai_Lon();
                     Date Ngay_Nhap_Lon_Nai = chiTietLonNai_caThe.getNgay_Nhap_Lon_Nai();
                     Date Ngay_Phoi = chiTietLonNai_caThe.getNgay_Phoi();
+                    Date Ngay_De = chiTietLonNai_caThe.getNgay_De();
 
                     Ham ham = new Ham();
                     txtMaTaiLon_QuanLyLonNai.setText(Integer.toString(MS_Tai_Lon));
                     datePickerNgayNhap.setValue(ham.convertToLocalDateViaSqlDate(Ngay_Nhap_Lon_Nai));
                     datePickerNgayPhoi.setValue(ham.convertToLocalDateViaSqlDate(Ngay_Phoi));
+                    txtChuyenSangChuongDe.setText(ham.DateToString(ham.TruNgay(Ngay_De, 10)));
                 }
             }
         });

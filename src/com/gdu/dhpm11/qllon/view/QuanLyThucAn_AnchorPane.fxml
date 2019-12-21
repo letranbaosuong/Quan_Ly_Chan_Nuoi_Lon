@@ -1,26 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="650.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gdu.dhpm11.qllon.controller.QuanLyThucAnController">
    <children>
-      <Text layoutX="78.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loại thức ăn:" />
-      <ComboBox layoutX="178.0" layoutY="54.0" prefWidth="150.0" />
-      <Text layoutX="78.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên thức ăn:" />
-      <ComboBox layoutX="178.0" layoutY="99.0" prefWidth="150.0" />
-      <Text layoutX="78.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nhà sản xuất:" />
-      <TextField layoutX="178.0" layoutY="140.0" />
-      <Text layoutX="78.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Đơn giá thức ăn:" />
-      <TextField layoutX="178.0" layoutY="177.0" />
-      <Text layoutX="78.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số lượng:" />
-      <TextField layoutX="178.0" layoutY="213.0" />
-      <Text layoutX="78.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày nhập:" />
-      <Text layoutX="78.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hạn sử dụng:" />
-      <DatePicker layoutX="178.0" layoutY="247.0" />
-      <DatePicker layoutX="178.0" layoutY="286.0" />
+      <Text fill="#127925" layoutX="251.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chức năng đang dần hoàn thiện">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Text>
+      <Text fill="#127925" layoutX="337.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vui lòng trở lại sao!">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

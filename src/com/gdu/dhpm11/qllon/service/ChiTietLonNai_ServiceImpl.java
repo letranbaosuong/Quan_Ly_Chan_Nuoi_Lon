@@ -2,9 +2,13 @@ package com.gdu.dhpm11.qllon.service;
 
 import com.gdu.dhpm11.qllon.dao.ChiTietLonNai_DAO;
 import com.gdu.dhpm11.qllon.dao.ChiTietLonNai_DAOImpl;
+import com.gdu.dhpm11.qllon.model.BaoCaoChiTietLonNai;
+import com.gdu.dhpm11.qllon.model.BarChartClassModel;
 import com.gdu.dhpm11.qllon.model.ChiTietLonNai;
+import com.gdu.dhpm11.qllon.model.PieChartClassModel;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class ChiTietLonNai_ServiceImpl implements ChiTietLonNai_Service {
@@ -72,6 +76,21 @@ public class ChiTietLonNai_ServiceImpl implements ChiTietLonNai_Service {
     @Override
     public int CapNhatChiTietLonNai(int MS_tai_Lon, int Chu_Ky, int So_Con_Con, int So_Con_Chet, Date Ngay_Nhap, Date Ngay_Phoi, Date Ngay_De) {
         return chiTietLonNai_dao.CapNhatChiTietLonNai(MS_tai_Lon, Chu_Ky, So_Con_Con, So_Con_Chet, Ngay_Nhap, Ngay_Phoi, Ngay_De);
+    }
+
+    @Override
+    public List<PieChartClassModel> getPieChart() {
+        return chiTietLonNai_dao.getPieChart();
+    }
+
+    @Override
+    public List<BarChartClassModel> getBarChart(int MS_Tai_Lon) {
+        return chiTietLonNai_dao.getBarChart(MS_Tai_Lon);
+    }
+
+    @Override
+    public List<BaoCaoChiTietLonNai> LayBaoCaoChiTietLonNai(String tuNgay, String denNgay) {
+        return chiTietLonNai_dao.LayBaoCaoChiTietLonNai(tuNgay, denNgay);
     }
 
 }

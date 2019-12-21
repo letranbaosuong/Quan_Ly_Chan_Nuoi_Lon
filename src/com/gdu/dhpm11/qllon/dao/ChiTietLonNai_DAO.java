@@ -1,8 +1,12 @@
 package com.gdu.dhpm11.qllon.dao;
 
+import com.gdu.dhpm11.qllon.model.BaoCaoChiTietLonNai;
+import com.gdu.dhpm11.qllon.model.BarChartClassModel;
 import com.gdu.dhpm11.qllon.model.ChiTietLonNai;
+import com.gdu.dhpm11.qllon.model.PieChartClassModel;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface ChiTietLonNai_DAO {
@@ -30,5 +34,11 @@ public interface ChiTietLonNai_DAO {
     public List<ChiTietLonNai> KiemTraMS_Tai_Lon(int MS_Tai_Lon);
 
     public int CapNhatChiTietLonNai(int MS_tai_Lon, int Chu_Ky, int So_Con_Con, int So_Con_Chet, Date Ngay_Nhap, Date Ngay_Phoi, Date Ngay_De);
+
+    public List<PieChartClassModel> getPieChart();
+
+    public List<BarChartClassModel> getBarChart(int MS_Tai_Lon);
+
+    public List<BaoCaoChiTietLonNai> LayBaoCaoChiTietLonNai(String tuNgay, String denNgay);
 
 }
