@@ -487,7 +487,7 @@ public class ThongKeBaoCaoController implements Initializable {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Tạo File Thành Công");
                     alert.setHeaderText(null);
-                    alert.setContentText("Bao_Cao_Chi_Tiet_Heo_Nai.xlsx, Bao_Cao_Chi_Tiet_Heo_Nai.pdf đã được tạo.");
+                    alert.setContentText("D:\\Report\\Bao_Cao_Chi_Tiet_Heo_Nai.xlsx\nD:\\Report\\Bao_Cao_Chi_Tiet_Heo_Nai.pdf\nđã được tạo.");
                     alert.showAndWait();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();

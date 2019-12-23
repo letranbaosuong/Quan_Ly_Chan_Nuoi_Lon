@@ -440,16 +440,16 @@ public class QuanLyLonController implements Initializable {
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Lưu");
 
-                final File file = new FileChooser().showSaveDialog(LuuStage);
-                Platform.runLater(new Runnable() {
-                    public void run() {
-                        if (file != null) {
-                            outputPath = file.getPath();
-                            System.out.println(outputPath);
-                            // Export to the path
-                        }
-                    }
-                });
+//                final File file = new FileChooser().showSaveDialog(LuuStage);
+//                Platform.runLater(new Runnable() {
+//                    public void run() {
+//                        if (file != null) {
+//                            outputPath = file.getPath();
+//                            System.out.println(outputPath);
+//                            // Export to the path
+//                        }
+//                    }
+//                });
                 if (tableViewVacXin.getItems().size() > 0) {
 
                     XSSFWorkbook wb = new XSSFWorkbook();
@@ -895,7 +895,7 @@ public class QuanLyLonController implements Initializable {
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setTitle("Tạo File Thành Công");
                         alert.setHeaderText(null);
-                        alert.setContentText("Bao_Cao_Chi_Tiet_Lich_Tiem_Heo_Nai.xlsx, Bao_Cao_Chi_Tiet_Lich_Tiem_Heo_Nai.pdf đã được tạo.");
+                        alert.setContentText("D:\\Report\\Bao_Cao_Chi_Tiet_Lich_Tiem_Heo_Nai.xlsx\nD:\\Report\\Bao_Cao_Chi_Tiet_Lich_Tiem_Heo_Nai.pdf\nđã được tạo.");
                         alert.showAndWait();
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
