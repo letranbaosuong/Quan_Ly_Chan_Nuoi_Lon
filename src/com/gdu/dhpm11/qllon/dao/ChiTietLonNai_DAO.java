@@ -22,6 +22,8 @@ public interface ChiTietLonNai_DAO {
 
     public int Xoa_ChiTietLonNai(int MS_Tai_Lon);
 
+    public int Xoa_ChiTietLonNai(int MS_Tai_Lon, int Chu_Ky);
+
     public int Xoa_LonNai(int MS_Tai_Lon);
 
     public int Them_ChiTietLonNai(int MS_Tai_Lon, Date Ngay_Nhap_Lon_Nai, Date Ngay_Phoi, Date Ngay_De, int Chu_Ky);

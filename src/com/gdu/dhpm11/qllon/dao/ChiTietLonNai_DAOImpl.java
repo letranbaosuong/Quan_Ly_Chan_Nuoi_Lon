@@ -178,6 +178,7 @@ public class ChiTietLonNai_DAOImpl implements ChiTietLonNai_DAO {
             while (rs.next()) {
                 ChiTietLonNai chiTietLonNai_caThe = new ChiTietLonNai();
                 chiTietLonNai_caThe.setMS_Tai_Lon(rs.getInt("MS_Tai_Lon"));
+                chiTietLonNai_caThe.setChu_Ky(rs.getInt("Chu_Ky"));
 
                 ChiTietLonNai_CaThe_List.add(chiTietLonNai_caThe);
             }
@@ -206,6 +207,27 @@ public class ChiTietLonNai_DAOImpl implements ChiTietLonNai_DAO {
             return rs;
         } catch (SQLException e) {
             System.out.println("Loi public int Xoa_ChiTietLonNai(int MS_Tai_Lon) {} : " + e.toString());
+        }
+
+        return rs;
+    }
+
+    @Override
+    public int Xoa_ChiTietLonNai(int MS_Tai_Lon, int Chu_Ky) {
+        Connection cons = DBConnect.getJDBCConnection();
+
+        String sql = "DELETE FROM `chi_tiet_lon_nai` WHERE MS_Tai_Lon = ? AND Chu_Ky = ?";
+        int rs = 0;
+        try {
+            PreparedStatement ps = cons.prepareStatement(sql);
+            ps.setInt(1, MS_Tai_Lon);
+            ps.setInt(2, Chu_Ky);
+            rs = ps.executeUpdate();
+            ps.close();
+            cons.close();
+            return rs;
+        } catch (SQLException e) {
+            System.out.println("Loi public int Xoa_ChiTietLonNai(int MS_Tai_Lon, int Chu_Ky) {} : " + e.toString());
         }
 
         return rs;
@@ -279,7 +301,7 @@ public class ChiTietLonNai_DAOImpl implements ChiTietLonNai_DAO {
     @Override
     public List<ChiTietLonNai> KiemTraMS_Tai_Lon(int MS_Tai_Lon) {
         Connection cons = DBConnect.getJDBCConnection();
-        String sql = "SELECT lon.MS_Tai_Lon FROM lon INNER JOIN chi_tiet_lon_nai ON chi_tiet_lon_nai.MS_Tai_Lon = lon.MS_Tai_Lon WHERE lon.MS_Tai_Lon = " + MS_Tai_Lon;
+        String sql = "SELECT lon.MS_Tai_Lon, chi_tiet_lon_nai.Chu_Ky FROM lon INNER JOIN chi_tiet_lon_nai ON chi_tiet_lon_nai.MS_Tai_Lon = lon.MS_Tai_Lon WHERE lon.MS_Tai_Lon = " + MS_Tai_Lon;
         List<ChiTietLonNai> listKiemTra = new ArrayList<>();
         try {
             PreparedStatement ps = cons.prepareCall(sql);
@@ -287,6 +309,7 @@ public class ChiTietLonNai_DAOImpl implements ChiTietLonNai_DAO {
             while (rs.next()) {
                 ChiTietLonNai listCaThe = new ChiTietLonNai();
                 listCaThe.setMS_Tai_Lon(rs.getInt("MS_Tai_Lon"));
+                listCaThe.setChu_Ky(rs.getInt("Chu_Ky"));
 
                 listKiemTra.add(listCaThe);
             }

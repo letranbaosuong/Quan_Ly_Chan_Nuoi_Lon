@@ -54,6 +54,11 @@ public class ChiTietLonNai_ServiceImpl implements ChiTietLonNai_Service {
     }
 
     @Override
+    public int Xoa_ChiTietLonNai(int MS_Tai_Lon, int Chu_Ky) {
+        return chiTietLonNai_dao.Xoa_ChiTietLonNai(MS_Tai_Lon, Chu_Ky);
+    }
+
+    @Override
     public int Xoa_LonNai(int MS_Tai_Lon) {
         return chiTietLonNai_dao.Xoa_LonNai(MS_Tai_Lon);
     }
