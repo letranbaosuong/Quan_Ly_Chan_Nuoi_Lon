@@ -8,10 +8,12 @@ import java.util.ResourceBundle;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import com.gdu.dhpm11.qllon.model.ChiTietLonNai;
@@ -120,6 +122,7 @@ public class ChiTietLonNaiController {
                     Parent manHinh_Man = loader.load();
                     Scene scene = new Scene(manHinh_Man);
                     stage.setScene(scene);
+                    stage.centerOnScreen();
                 } catch (IOException e) {
                     System.out.println("Loi btnThoat.setOnAction(new EventHandler<ActionEvent>() {} trong package com.gdu.dhpm11.qllon.controller.ChiTietLonNaiController : " + e.getMessage());
                 }

@@ -16,168 +16,181 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="650.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gdu.dhpm11.qllon.controller.QuanLyLonController">
+<AnchorPane prefHeight="650.0" prefWidth="895.0" style="-fx-border-color: pink;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gdu.dhpm11.qllon.controller.QuanLyLonController">
     <children>
         <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="797.0" stylesheets="@../css/QuanLyLon_AnchorPane.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <tabs>
                 <Tab text="Quản Lý Lợn Nái">
                     <content>
-                  <VBox>
+                  <AnchorPane style="-fx-border-color: red;">
                      <children>
-                        <HBox prefHeight="232.0" prefWidth="875.0" VBox.vgrow="ALWAYS">
+                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <VBox prefHeight="231.0" prefWidth="723.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                              <HBox prefHeight="232.0" prefWidth="875.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <HBox alignment="CENTER" prefWidth="725.0" spacing="10.0">
+                                    <VBox prefHeight="231.0" prefWidth="723.0" spacing="10.0" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã tai lợn: ">
-                                             <font>
-                                                <Font name="Cambria" size="14.0" />
-                                             </font>
-                                          </Text>
-                                          <TextField fx:id="txtMaTaiLon_QuanLyLonNai" prefHeight="25.0" prefWidth="92.0" />
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày nhập: ">
-                                             <font>
-                                                <Font name="Cambria" size="14.0" />
-                                             </font>
-                                          </Text>
-                                          <DatePicker fx:id="datePickerNgayNhap" />
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày phối: ">
-                                             <font>
-                                                <Font name="Cambria" size="14.0" />
-                                             </font>
-                                          </Text>
-                                          <DatePicker fx:id="datePickerNgayPhoi">
-                                             <HBox.margin>
+                                          <HBox alignment="CENTER" prefWidth="725.0" spacing="10.0">
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã tai lợn: ">
+                                                   <font>
+                                                      <Font name="Cambria" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <TextField fx:id="txtMaTaiLon_QuanLyLonNai" prefHeight="25.0" prefWidth="92.0" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày nhập: ">
+                                                   <font>
+                                                      <Font name="Cambria" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <DatePicker fx:id="datePickerNgayNhap" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày phối: ">
+                                                   <font>
+                                                      <Font name="Cambria" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <DatePicker fx:id="datePickerNgayPhoi">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </DatePicker>
+                                             </children>
+                                             <VBox.margin>
                                                 <Insets />
-                                             </HBox.margin>
-                                          </DatePicker>
+                                             </VBox.margin>
+                                             <padding>
+                                                <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+                                             </padding>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="27.0" prefWidth="725.0" spacing="10.0">
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Chuyển sang chuồng đẻ:" />
+                                                <TextField fx:id="txtChuyenSangChuongDe" />
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" />
+                                             </padding>
+                                          </HBox>
+                                          <HBox VBox.vgrow="ALWAYS">
+                                             <children>
+                                                        <TableView fx:id="tableViewKiemTraChuKyMangThai" prefHeight="160.0" prefWidth="723.0">
+                                                            <columns>
+                                                                <TableColumn fx:id="tblC_MaTai_ChuKyMangThai" prefWidth="60.0" text="Mã tai" />
+                                                      <TableColumn fx:id="tblC_ChuKyDe_ChuKyMangThai" prefWidth="65.0" text="Lần đẻ" />
+                                                                <TableColumn prefWidth="500.0" text="Kiểm tra chu kỳ mang thai (ngày)">
+                                                         <columns>
+                                                            <TableColumn fx:id="tblC_ChuKy_21Ngay" prefWidth="150.0" text="21" />
+                                                            <TableColumn fx:id="tblC_ChuKy_42Ngay" prefWidth="150.0" text="42" />
+                                                            <TableColumn fx:id="tblC_ChuKy_84Ngay" prefWidth="150.0" text="84" />
+                                                         </columns>
+                                                      </TableColumn>
+                                                      <TableColumn fx:id="tblC_DeDuKien" prefWidth="150.0" text="Ngày đẻ" />
+                                                            </columns>
+                                                        </TableView>
+                                             </children>
+                                          </HBox>
                                        </children>
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                       <padding>
-                                          <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
-                                       </padding>
-                                    </HBox>
-                                    <HBox alignment="CENTER" prefHeight="27.0" prefWidth="725.0" spacing="10.0">
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefWidth="127.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Chuyển sang chuồng đẻ:" />
-                                          <TextField fx:id="txtChuyenSangChuongDe" />
+                                          <AnchorPane nodeOrientation="LEFT_TO_RIGHT">
+                                             <children>
+                                                <TextField fx:id="txtTimKiemSoMaTai" alignment="CENTER" layoutX="2.0" layoutY="3.0" prefHeight="25.0" prefWidth="127.0" promptText="     Nhập số mã tai" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                <ImageView fitHeight="26.0" fitWidth="30.0" layoutX="3.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <image>
+                                                      <Image url="@../images/icons8-search-property-48.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </AnchorPane>
+                                          <Button fx:id="btnThem" defaultButton="true" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Lưu      ">
+                                             <graphic>
+                                                <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/icons8-add-property-64.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button fx:id="btnSua" defaultButton="true" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Sửa       ">
+                                             <graphic>
+                                                <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/icons8-edit-property-64.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button fx:id="btnTaoMoi" defaultButton="true" graphicTextGap="20.0" mnemonicParsing="false" prefWidth="127.0" text="Tạo mới">
+                                             <graphic>
+                                                <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/icons8-new-property-64.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button fx:id="btnXoa" defaultButton="true" graphicTextGap="20.0" mnemonicParsing="false" prefWidth="127.0" text="Xóa       ">
+                                             <graphic>
+                                                <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/icons8-remove-property-64.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button fx:id="btnXuatFile" defaultButton="true" graphicTextGap="20.0" mnemonicParsing="false" prefWidth="127.0" text="Xuất file">
+                                             <graphic>
+                                                <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/icons8-database-export-40.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
                                        </children>
-                                       <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" />
-                                       </padding>
-                                    </HBox>
-                                    <HBox VBox.vgrow="ALWAYS">
-                                       <children>
-                                                  <TableView fx:id="tableViewKiemTraChuKyMangThai" prefHeight="160.0" prefWidth="723.0">
-                                                      <columns>
-                                                          <TableColumn fx:id="tblC_MaTai_ChuKyMangThai" prefWidth="60.0" text="Mã tai" />
-                                                <TableColumn fx:id="tblC_ChuKyDe_ChuKyMangThai" prefWidth="65.0" text="Chu kỳ đẻ" />
-                                                          <TableColumn prefWidth="500.0" text="Kiểm tra chu kỳ mang thai (ngày)">
-                                                   <columns>
-                                                      <TableColumn fx:id="tblC_ChuKy_21Ngay" prefWidth="150.0" text="21" />
-                                                      <TableColumn fx:id="tblC_ChuKy_42Ngay" prefWidth="150.0" text="42" />
-                                                      <TableColumn fx:id="tblC_ChuKy_84Ngay" prefWidth="150.0" text="84" />
-                                                   </columns>
-                                                </TableColumn>
-                                                <TableColumn fx:id="tblC_DeDuKien" prefWidth="150.0" text="Ngày đẻ" />
-                                                      </columns>
-                                                  </TableView>
-                                       </children>
-                                    </HBox>
+                                    </VBox>
                                  </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefWidth="127.0" spacing="10.0" HBox.hgrow="ALWAYS">
-                                 <HBox.margin>
+                                 <VBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </HBox.margin>
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox VBox.vgrow="ALWAYS">
                                  <children>
-                                    <AnchorPane nodeOrientation="LEFT_TO_RIGHT">
-                                       <children>
-                                          <TextField fx:id="txtTimKiemSoMaTai" alignment="CENTER" layoutX="2.0" layoutY="3.0" prefHeight="25.0" prefWidth="127.0" promptText="     Nhập số mã tai" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                          <ImageView fitHeight="26.0" fitWidth="30.0" layoutX="3.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <image>
-                                                <Image url="@../images/icons8-search-property-48.png" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                    </AnchorPane>
-                                    <Button fx:id="btnThem" defaultButton="true" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Lưu      ">
-                                       <graphic>
-                                          <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/icons8-add-property-64.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </Button>
-                                    <Button fx:id="btnSua" defaultButton="true" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Sửa       ">
-                                       <graphic>
-                                          <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/icons8-edit-property-64.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </Button>
-                                    <Button fx:id="btnTaoMoi" defaultButton="true" graphicTextGap="20.0" mnemonicParsing="false" prefWidth="127.0" text="Tạo mới">
-                                       <graphic>
-                                          <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/icons8-new-property-64.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </Button>
-                                    <Button fx:id="btnXoa" defaultButton="true" graphicTextGap="20.0" mnemonicParsing="false" prefWidth="127.0" text="Xóa       ">
-                                       <graphic>
-                                          <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/icons8-remove-property-64.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </Button>
-                                 </children>
-                              </VBox>
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox VBox.vgrow="ALWAYS">
-                           <children>
-                              <TableView fx:id="tableViewVacXin" prefHeight="155.0" prefWidth="870.0" HBox.hgrow="ALWAYS">
-                                 <columns>
-                                    <TableColumn fx:id="tblC_MaTai_VacXin" prefWidth="90.0" text="Mã tai" />
-                                    <TableColumn fx:id="tblC_ChuKyDe_VacXin" prefWidth="90.0" text="Chu kỳ đẻ" />
-                                    <TableColumn prefWidth="749.0" text="Vác-xin">
+                                    <TableView fx:id="tableViewVacXin" prefHeight="155.0" prefWidth="870.0" HBox.hgrow="ALWAYS">
                                        <columns>
-                                          <TableColumn fx:id="tblC_Ta" prefWidth="100.0" text="Tả" />
-                                          <TableColumn fx:id="tblC_ECOLI" prefWidth="100.0" text="ECOLI" />
-                                          <TableColumn fx:id="tblC_TayGiun" prefWidth="100.0" text="Tẩy giun" />
-                                          <TableColumn fx:id="tblC_PARVO" prefWidth="100.0" text="PARVO" />
-                                          <TableColumn fx:id="tblC_FE_COC" prefWidth="100.0" text="FE+COC (3 ngày)" />
-                                          <TableColumn fx:id="tblC_Suyen" prefWidth="100.0" text="Suyễn (14 ngày)" />
-                                          <TableColumn fx:id="tblC_PRRS" prefWidth="100.0" text="PRRS (21 ngày)" />
+                                          <TableColumn fx:id="tblC_MaTai_VacXin" prefWidth="61.0" text="Mã tai" />
+                                          <TableColumn fx:id="tblC_ChuKyDe_VacXin" prefWidth="66.0" text="Lần đẻ" />
+                                          <TableColumn prefWidth="742.0" text="Vác-xin">
+                                             <columns>
+                                                <TableColumn fx:id="tblC_Ta" prefWidth="100.0" text="Tả" />
+                                                <TableColumn fx:id="tblC_ECOLI" prefWidth="100.0" text="ECOLI" />
+                                                <TableColumn fx:id="tblC_TayGiun" prefWidth="100.0" text="Tẩy giun" />
+                                                <TableColumn fx:id="tblC_PARVO" prefWidth="100.0" text="PARVO" />
+                                                <TableColumn fx:id="tblC_FE_COC" prefWidth="106.0" text="FE+COC (3 ngày)" />
+                                                <TableColumn fx:id="tblC_Suyen" prefWidth="119.0" text="Suyễn (14 ngày)" />
+                                                <TableColumn fx:id="tblC_PRRS" prefWidth="117.0" text="PRRS (21 ngày)" />
+                                             </columns>
+                                          </TableColumn>
                                        </columns>
-                                    </TableColumn>
-                                 </columns>
-                              </TableView>
+                                    </TableView>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </HBox>
                            </children>
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </VBox.margin>
-                        </HBox>
+                        </VBox>
                      </children>
-                  </VBox>
+                  </AnchorPane>
                     </content>
                 </Tab>
                 <Tab text="Quản Lý Lợn Thịt">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-border-color: #e69915;">
                      <children>
                         <Text fill="#127925" layoutX="241.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chức năng đang dần hoàn thiện">
                            <font>

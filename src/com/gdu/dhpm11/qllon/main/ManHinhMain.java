@@ -22,6 +22,7 @@ public class ManHinhMain extends Application {
         primaryStage.setTitle("Quản Lý Chăn Nuôi Lợn");
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(scene);
+        primaryStage.centerOnScreen();
         primaryStage.show();
 
         root.setOnMousePressed(mouseEvent -> {

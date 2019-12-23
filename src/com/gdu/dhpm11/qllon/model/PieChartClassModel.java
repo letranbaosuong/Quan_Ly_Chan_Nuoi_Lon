@@ -5,6 +5,15 @@ public class PieChartClassModel {
     private int So_Con_Con;
     private int So_Con_Chet;
 
+    public PieChartClassModel() {
+    }
+
+    public PieChartClassModel(int MS_Tai_Lon, int so_Con_Con, int so_Con_Chet) {
+        this.MS_Tai_Lon = MS_Tai_Lon;
+        So_Con_Con = so_Con_Con;
+        So_Con_Chet = so_Con_Chet;
+    }
+
     public int getMS_Tai_Lon() {
         return MS_Tai_Lon;
     }

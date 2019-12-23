@@ -13,5 +13,6 @@
     <orderEntry type="library" name="mysql-connector-java-5.1.48" level="project" />
     <orderEntry type="library" name="itextpdf-5.5.10" level="project" />
     <orderEntry type="library" name="jPDFViewerFX" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>

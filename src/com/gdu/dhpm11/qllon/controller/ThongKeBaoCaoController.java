@@ -10,10 +10,17 @@ import com.gdu.dhpm11.qllon.utility.ClassTableModel;
 import com.gdu.dhpm11.qllon.utility.Class_TableView_BaoCaoChiTiet_LonNai;
 import com.gdu.dhpm11.qllon.utility.Class_TableView_BaoCao_LonNai;
 import com.gdu.dhpm11.qllon.utility.Ham;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
@@ -24,13 +31,19 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 import java.util.List;
-import java.util.ResourceBundle;
+
+import static com.itextpdf.text.Annotation.FILE;
 
 public class ThongKeBaoCaoController implements Initializable {
 
@@ -69,6 +82,9 @@ public class ThongKeBaoCaoController implements Initializable {
 
     @FXML
     private Button btnHienThiKetQuaBaoCao;
+
+    @FXML
+    private Button btnXuatFileBaoCaoChiTietLonNai;
 
     @FXML
     private TableView<Class_TableView_BaoCao_LonNai> tableViewBaoCao;
@@ -111,6 +127,10 @@ public class ThongKeBaoCaoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        datePickerTuNgay.setEditable(false);
+        datePickerDenNgay.setEditable(false);
+        btnXuatFileBaoCaoChiTietLonNai.setDisable(true);
 
         btnKetQua.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -201,42 +221,24 @@ public class ThongKeBaoCaoController implements Initializable {
         int soConCon = 0, soConChet = 0;
         List<PieChartClassModel> listDetailsPieChart = new ArrayList<>();
 
-        int temp = list.get(0).getMS_Tai_Lon();
-        int dem = 1;
+        int dem = 0;
         for (int i = 0; i < list.size(); i++) {
+            soConCon = soConCon + list.get(i).getSo_Con_Con();
+            soConChet = soConChet + list.get(i).getSo_Con_Chet();
             for (int j = i + 1; j < list.size(); j++) {
-                soConCon = soConCon + list.get(i).getSo_Con_Con();
                 if (list.get(i).getMS_Tai_Lon() == list.get(j).getMS_Tai_Lon()) {
-//                    soConCon = soConCon + list.get(j).getSo_Con_Con();
-//                    soConChet = soConChet + list.get(i).getSo_Con_Chet() + list.get(j).getSo_Con_Chet();
+                    soConCon = soConCon + list.get(j).getSo_Con_Con();
+                    soConChet = soConChet + list.get(j).getSo_Con_Chet();
                     dem++;
-                } else {
-                    soConCon = list.get(i).getSo_Con_Con();
-                    soConChet = list.get(i).getSo_Con_Chet();
                 }
             }
-            System.out.println("dem = " + dem);
-            dem = 1;
-            if (dem > 1) {
-                i = i + dem - 2;
-                dem = 0;
+            listDetailsPieChart.add(new PieChartClassModel(list.get(i).getMS_Tai_Lon(), soConCon, soConChet));
+            if (dem > 0) {
+                i = i + dem;
             }
-
-//            System.out.println("i = " + i + " - dem = " + dem + " - soConCon = " + soConCon + " - soConChet = " + soConChet);
-
-//            PieChartClassModel chiTietPieChart = new PieChartClassModel();
-//            chiTietPieChart.setMS_Tai_Lon(list.get(i).getMS_Tai_Lon());
-//            chiTietPieChart.setSo_Con_Con(soConCon);
-//            chiTietPieChart.setSo_Con_Chet(soConChet);
-//            listDetailsPieChart.add(chiTietPieChart);
-//            soConCon = 0;
-//            soConChet = 0;
-//            if (dem > 0) {
-//                i = i + dem + 1;
-//                dem = 0;
-//            } else {
-//
-//            }
+            soConCon = 0;
+            soConChet = 0;
+            dem = 0;
         }
 
         System.out.println(listDetailsPieChart.toString());
@@ -274,6 +276,7 @@ public class ThongKeBaoCaoController implements Initializable {
                     tblC_TieuChiBaoCao.setCellValueFactory(new PropertyValueFactory<>("Tieu_Chi_Bao_Cao"));
                     tblC_SoLieu.setCellValueFactory(new PropertyValueFactory<>("So_Lieu"));
                     tableViewBaoCao.setItems(ClassTableModel.setTable_BaoCaoLonNai(list));
+                    btnXuatFileBaoCaoChiTietLonNai.setDisable(false);
                 } else {
                     DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                     String tuNgay = datePickerTuNgay.getValue().format(formatters);
@@ -285,6 +288,213 @@ public class ThongKeBaoCaoController implements Initializable {
                     alert.showAndWait();
                     tableViewBaoCaoChiTiet.setItems(null);
                     tableViewBaoCao.setItems(null);
+                    btnXuatFileBaoCaoChiTietLonNai.setDisable(true);
+                }
+            }
+        });
+        btnXuatFileBaoCaoChiTietLonNai.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                XSSFWorkbook wb = new XSSFWorkbook();
+                XSSFSheet sheet = wb.createSheet("Báo cáo chi tiết Lợn nái");
+                XSSFRow header = sheet.createRow(0);
+                header.createCell(0).setCellValue("STT");
+                header.createCell(1).setCellValue("Mã Tai");
+                header.createCell(2).setCellValue("Ngày Phối");
+                header.createCell(3).setCellValue("Ngày Đẻ");
+                header.createCell(4).setCellValue("Tuổi Lợn");
+                header.createCell(5).setCellValue("Tổng Số Lợn");
+                header.createCell(6).setCellValue("Số Lợn Chết");
+                header.createCell(7).setCellValue("Tổng Số Lợn Sống");
+
+                for (int i = 0; i < tableViewBaoCaoChiTiet.getItems().size(); i++) {
+                    XSSFRow row = sheet.createRow(i + 1);
+                    row.createCell(0).setCellValue(tableViewBaoCaoChiTiet.getItems().get(i).getSTT());
+                    row.createCell(1).setCellValue(tableViewBaoCaoChiTiet.getItems().get(i).getMS_Tai());
+                    row.createCell(2).setCellValue(tableViewBaoCaoChiTiet.getItems().get(i).getNgay_Phoi());
+                    row.createCell(3).setCellValue(tableViewBaoCaoChiTiet.getItems().get(i).getNgay_De());
+                    row.createCell(4).setCellValue(tableViewBaoCaoChiTiet.getItems().get(i).getTuoi_Lon());
+                    row.createCell(5).setCellValue(tableViewBaoCaoChiTiet.getItems().get(i).getTong_So_Lon());
+                    row.createCell(6).setCellValue(tableViewBaoCaoChiTiet.getItems().get(i).getSo_Lon_Chet());
+                    row.createCell(7).setCellValue(tableViewBaoCaoChiTiet.getItems().get(i).getTong_So_Lon());
+                }
+
+                try {
+                    FileOutputStream fileOut = new FileOutputStream("d:/Report/Bao_Cao_Chi_Tiet_Heo_Nai.xlsx");
+                    wb.write(fileOut);
+                    fileOut.close();
+
+                    BaseFont base = BaseFont.createFont("C:\\Users\\Suong\\Desktop\\hoctap\\nam3\\Bao-Cao\\Quan_Ly_Chan_Nuoi_Lon\\src\\com\\gdu\\dhpm11\\qllon\\font\\times.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                    Font fontTieuDe = new Font(base, 11f, Font.BOLD);
+                    String[] headerChiTiet = {"STT", "Mã Tai", "Ngày phối", "Ngày đẻ", "Tuổi lợn", "Tổng số lợn", "Số lợn chết", "Còn lại"};
+                    Document document = new Document();
+                    Paragraph paragraph = new Paragraph();
+
+                    PdfWriter.getInstance(document, new FileOutputStream("d:/Report/Bao_Cao_Chi_Tiet_Heo_Nai.pdf"));
+                    document.open();
+                    Ham ham = new Ham();
+                    document.add(new Paragraph("Báo Cáo Từ Ngày " + ham.DateToString(ham.convertToDateViaSqlDate(datePickerTuNgay.getValue())) + " - 00:00 đến Ngày " + ham.DateToString(ham.convertToDateViaSqlDate(datePickerDenNgay.getValue())) + " - 23:59", fontTieuDe));
+                    document.add(new Paragraph("Được tạo bởi: " + System.getProperty("user.name") + ", " + new Date(), fontTieuDe));
+                    document.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
+                    document.add(new Paragraph(" "));
+
+                    PdfPTable pdfPTable = new PdfPTable(headerChiTiet.length);
+                    PdfPCell pdfPCell;
+                    pdfPTable.setWidthPercentage(100);
+                    pdfPTable.setSpacingBefore(10);
+                    float[] columnWidths = {0.9f, 1.5f, 2f, 2f, 2f, 2f, 2f, 2f};
+                    pdfPTable.setWidths(columnWidths);
+
+                    PdfPCell cellSoNaiChua;
+                    Font fontCell = new Font(base, 14f, Font.BOLD);
+                    cellSoNaiChua = new PdfPCell(new Phrase("Số nái chữa: ", fontCell));
+                    cellSoNaiChua.setHorizontalAlignment(Element.ALIGN_RIGHT);
+                    cellSoNaiChua.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                    cellSoNaiChua.setColspan(4);
+                    cellSoNaiChua.setBackgroundColor(new BaseColor(255, 239, 246));
+                    pdfPTable.addCell(cellSoNaiChua);
+                    //
+                    cellSoNaiChua = new PdfPCell(new Phrase(String.valueOf(tableViewBaoCao.getItems().get(0).getSo_Lieu())));
+                    cellSoNaiChua.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    cellSoNaiChua.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                    cellSoNaiChua.setColspan(4);
+                    cellSoNaiChua.setBackgroundColor(new BaseColor(255, 239, 246));
+                    pdfPTable.addCell(cellSoNaiChua);
+
+                    PdfPCell cellSoDe;
+                    cellSoDe = new PdfPCell(new Phrase("Số nái đẻ: ", fontCell));
+                    cellSoDe.setHorizontalAlignment(Element.ALIGN_RIGHT);
+                    cellSoDe.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                    cellSoDe.setColspan(4);
+                    cellSoDe.setBackgroundColor(new BaseColor(255, 239, 246));
+                    pdfPTable.addCell(cellSoDe);
+                    //
+                    cellSoDe = new PdfPCell(new Phrase(String.valueOf(tableViewBaoCao.getItems().get(1).getSo_Lieu())));
+                    cellSoDe.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    cellSoDe.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                    cellSoDe.setColspan(4);
+                    cellSoDe.setBackgroundColor(new BaseColor(255, 239, 246));
+                    pdfPTable.addCell(cellSoDe);
+
+                    PdfPCell cellBaoCaoChiTiet;
+                    Font fontCellBaoCaoChiTiet = new Font(base, 18f, Font.BOLD);
+                    cellBaoCaoChiTiet = new PdfPCell(new Phrase("BÁO CÁO CHI TIẾT ", fontCellBaoCaoChiTiet));
+                    cellBaoCaoChiTiet.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    cellBaoCaoChiTiet.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                    cellBaoCaoChiTiet.setColspan(8);
+                    cellBaoCaoChiTiet.setBackgroundColor(BaseColor.CYAN);
+                    pdfPTable.addCell(cellBaoCaoChiTiet);
+
+                    int indexC = 0;
+                    Font fontCellHead = new Font(base, 12f, Font.BOLD);
+                    while (indexC < headerChiTiet.length) {
+                        pdfPCell = new PdfPCell(new Phrase(headerChiTiet[indexC++], fontCellHead));
+                        pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                        pdfPCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                        pdfPCell.setBackgroundColor(BaseColor.GREEN);
+                        pdfPCell.setFixedHeight(20);
+                        pdfPTable.addCell(pdfPCell);
+                    }
+                    for (int indexR = 0; indexR < tableViewBaoCaoChiTiet.getItems().size(); indexR++) {
+//                        String[] row = tableViewBaoCaoChiTiet.getItems().get(indexR);
+                        PdfPCell pdfPCell1 = new PdfPCell(new Phrase(String.valueOf(tableViewBaoCaoChiTiet.getItems().get(indexR).getSTT())));
+                        PdfPCell pdfPCell2 = new PdfPCell(new Phrase(String.valueOf(tableViewBaoCaoChiTiet.getItems().get(indexR).getMS_Tai())));
+                        PdfPCell pdfPCell3 = new PdfPCell(new Phrase(tableViewBaoCaoChiTiet.getItems().get(indexR).getNgay_Phoi()));
+                        PdfPCell pdfPCell4 = new PdfPCell(new Phrase(tableViewBaoCaoChiTiet.getItems().get(indexR).getNgay_De()));
+                        PdfPCell pdfPCell5 = new PdfPCell(new Phrase(String.valueOf(tableViewBaoCaoChiTiet.getItems().get(indexR).getTuoi_Lon())));
+                        PdfPCell pdfPCell6 = new PdfPCell(new Phrase(String.valueOf(tableViewBaoCaoChiTiet.getItems().get(indexR).getTong_So_Lon())));
+                        PdfPCell pdfPCell7 = new PdfPCell(new Phrase(String.valueOf(tableViewBaoCaoChiTiet.getItems().get(indexR).getSo_Lon_Chet())));
+                        PdfPCell pdfPCell8 = new PdfPCell(new Phrase(String.valueOf(tableViewBaoCaoChiTiet.getItems().get(indexR).getTong_So_Lon_Song())));
+
+                        pdfPCell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+                        pdfPCell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+                        pdfPCell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+                        pdfPCell2.setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+                        pdfPCell3.setHorizontalAlignment(Element.ALIGN_CENTER);
+                        pdfPCell3.setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+                        pdfPCell4.setHorizontalAlignment(Element.ALIGN_CENTER);
+                        pdfPCell4.setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+                        pdfPCell5.setHorizontalAlignment(Element.ALIGN_CENTER);
+                        pdfPCell5.setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+                        pdfPCell6.setHorizontalAlignment(Element.ALIGN_CENTER);
+                        pdfPCell6.setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+                        pdfPCell7.setHorizontalAlignment(Element.ALIGN_CENTER);
+                        pdfPCell7.setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+                        pdfPCell8.setHorizontalAlignment(Element.ALIGN_CENTER);
+                        pdfPCell8.setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+                        if (indexR % 2 != 0) {
+                            pdfPCell1.setBackgroundColor(new BaseColor(237, 234, 252));
+                            pdfPCell2.setBackgroundColor(new BaseColor(237, 234, 252));
+                            pdfPCell3.setBackgroundColor(new BaseColor(237, 234, 252));
+                            pdfPCell4.setBackgroundColor(new BaseColor(237, 234, 252));
+                            pdfPCell5.setBackgroundColor(new BaseColor(237, 234, 252));
+                            pdfPCell6.setBackgroundColor(new BaseColor(237, 234, 252));
+                            pdfPCell7.setBackgroundColor(new BaseColor(237, 234, 252));
+                            pdfPCell8.setBackgroundColor(new BaseColor(237, 234, 252));
+                        }
+
+                        pdfPTable.addCell(pdfPCell1);
+                        pdfPTable.addCell(pdfPCell2);
+                        pdfPTable.addCell(pdfPCell3);
+                        pdfPTable.addCell(pdfPCell4);
+                        pdfPTable.addCell(pdfPCell5);
+                        pdfPTable.addCell(pdfPCell6);
+                        pdfPTable.addCell(pdfPCell7);
+                        pdfPTable.addCell(pdfPCell8);
+
+                    }
+                    PdfPCell cellTongCong;
+                    cellTongCong = new PdfPCell(new Phrase("Tổng cộng: ", fontCell));
+                    cellTongCong.setHorizontalAlignment(Element.ALIGN_RIGHT);
+                    cellTongCong.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                    cellTongCong.setColspan(5);
+                    cellTongCong.setBackgroundColor(new BaseColor(255, 239, 246));
+                    pdfPTable.addCell(cellTongCong);
+
+                    cellTongCong = new PdfPCell(new Phrase(String.valueOf(tableViewBaoCao.getItems().get(2).getSo_Lieu())));
+                    cellTongCong.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    cellTongCong.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                    cellTongCong.setColspan(1);
+                    cellTongCong.setBackgroundColor(new BaseColor(255, 239, 246));
+                    pdfPTable.addCell(cellTongCong);
+
+                    cellTongCong = new PdfPCell(new Phrase(String.valueOf(tableViewBaoCao.getItems().get(3).getSo_Lieu())));
+                    cellTongCong.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    cellTongCong.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                    cellTongCong.setColspan(1);
+                    cellTongCong.setBackgroundColor(new BaseColor(255, 239, 246));
+                    pdfPTable.addCell(cellTongCong);
+
+                    cellTongCong = new PdfPCell(new Phrase(String.valueOf(tableViewBaoCao.getItems().get(4).getSo_Lieu())));
+                    cellTongCong.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    cellTongCong.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                    cellTongCong.setColspan(1);
+                    cellTongCong.setBackgroundColor(new BaseColor(255, 239, 246));
+                    pdfPTable.addCell(cellTongCong);
+                    paragraph.add(pdfPTable);
+
+                    document.add(paragraph);
+                    document.close();
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Tạo File Thành Công");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Bao_Cao_Chi_Tiet_Heo_Nai.xlsx, Bao_Cao_Chi_Tiet_Heo_Nai.pdf đã được tạo.");
+                    alert.showAndWait();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (DocumentException e) {
+                    e.printStackTrace();
                 }
             }
         });
