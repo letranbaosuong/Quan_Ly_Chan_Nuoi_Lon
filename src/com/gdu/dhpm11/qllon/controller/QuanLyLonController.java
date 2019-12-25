@@ -489,7 +489,7 @@ public class QuanLyLonController implements Initializable {
                     }
 
                     try {
-                        FileOutputStream fileOut = new FileOutputStream("d:/Report/Bao_Cao_Chi_Tiet_Lich_Tiem_Heo_Nai.xlsx");
+                        FileOutputStream fileOut = new FileOutputStream("e:/Report/Bao_Cao_Chi_Tiet_Lich_Tiem_Heo_Nai.xlsx");
 //                        FileOutputStream fileOut = new FileOutputStream(outputPath + ".xlsx");
                         wb.write(fileOut);
                         fileOut.close();
@@ -501,7 +501,7 @@ public class QuanLyLonController implements Initializable {
                         Document document = new Document();
                         Paragraph paragraph = new Paragraph();
 
-                        PdfWriter.getInstance(document, new FileOutputStream("d:/Report/Bao_Cao_Chi_Tiet_Lich_Tiem_Heo_Nai.pdf"));
+                        PdfWriter.getInstance(document, new FileOutputStream("e:/Report/Bao_Cao_Chi_Tiet_Lich_Tiem_Heo_Nai.pdf"));
 //                        PdfWriter.getInstance(document, new FileOutputStream(outputPath + ".pdf"));
                         document.open();
                         document.add(new Paragraph("Báo Cáo Chi Tiết Lịch Tiêm", fontTieuDe));
@@ -895,7 +895,7 @@ public class QuanLyLonController implements Initializable {
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setTitle("Tạo File Thành Công");
                         alert.setHeaderText(null);
-                        alert.setContentText("D:\\Report\\Bao_Cao_Chi_Tiet_Lich_Tiem_Heo_Nai.xlsx\nD:\\Report\\Bao_Cao_Chi_Tiet_Lich_Tiem_Heo_Nai.pdf\nđã được tạo.");
+                        alert.setContentText("E:\\Report\\Bao_Cao_Chi_Tiet_Lich_Tiem_Heo_Nai.xlsx\nE:\\Report\\Bao_Cao_Chi_Tiet_Lich_Tiem_Heo_Nai.pdf\nđã được tạo.");
                         alert.showAndWait();
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
